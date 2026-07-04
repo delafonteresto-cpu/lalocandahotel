@@ -1,0 +1,453 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reservas y Contacto | La Locanda - Art &amp; Taste Retreat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://booking-widget.aloha.co/aloha-booking-widget.css"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#4d6453",
+                        "surface": "#faf9f5",
+                        "outline-variant": "#c3c8c1",
+                        "background": "#faf9f5",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#b4cdb8",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#ffdcbd",
+                        "tertiary-fixed-dim": "#c5c9a7",
+                        "primary": "#061b0e",
+                        "surface-dim": "#dbdad6",
+                        "outline": "#737973",
+                        "on-surface": "#1b1c1a",
+                        "on-tertiary-fixed": "#1a1d07",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#faf9f5",
+                        "on-tertiary-container": "#929677",
+                        "on-secondary-fixed-variant": "#623f18",
+                        "secondary-fixed-dim": "#f0bd8b",
+                        "inverse-surface": "#2f312e",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e9e8e4",
+                        "secondary-container": "#ffca98",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e3e2df",
+                        "on-primary-container": "#819986",
+                        "on-secondary-fixed": "#2c1600",
+                        "on-background": "#1b1c1a",
+                        "inverse-on-surface": "#f2f1ed",
+                        "primary-fixed": "#d0e9d4",
+                        "on-tertiary-fixed-variant": "#45492f",
+                        "surface-container": "#efeeea",
+                        "surface-container-highest": "#e3e2df",
+                        "tertiary-fixed": "#e1e6c2",
+                        "tertiary-container": "#2a2e16",
+                        "on-surface-variant": "#434843",
+                        "tertiary": "#161905",
+                        "primary-fixed-dim": "#b4cdb8",
+                        "on-secondary-container": "#7a532a",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#7d562d",
+                        "on-primary-fixed": "#0b2013",
+                        "surface-container-low": "#f4f4f0",
+                        "on-primary-fixed-variant": "#364c3c",
+                        "on-error": "#ffffff",
+                        "primary-container": "#1b3022"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    fontFamily: {
+                        "headline": ["Playfair Display"],
+                        "display": ["Playfair Display"],
+                        "body": ["DM Sans"],
+                        "label": ["DM Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'DM Sans', sans-serif; background-color: #faf9f5; color: #1b1c1a; }
+        .font-display { font-family: 'Playfair Display', serif; }
+        .font-label-caps { font-family: 'DM Sans', sans-serif; text-transform: uppercase; letter-spacing: 0.15em; font-size: 12px; font-weight: 500; }
+        .glass-nav { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .section-gap { padding-top: 128px; padding-bottom: 128px; }
+        .image-mask-arch { border-radius: 120px 120px 0 0; }
+        .shadow-organic { box-shadow: 0 20px 50px rgba(6, 27, 14, 0.05); }
+    
+#mobile-menu {
+    display: none;
+    position: fixed;
+    top: 57px;
+    left: 0;
+    width: 100%;
+    background: rgba(250, 249, 245, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 49;
+    border-top: 1px solid rgba(195,200,193,0.2);
+    padding: 1.5rem 2rem 2rem;
+    box-shadow: 0 8px 24px rgba(6,27,14,0.06);
+}
+#mobile-menu.open {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+#mobile-menu a {
+    display: block;
+    padding: 14px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #434843;
+    border-bottom: 0.5px solid rgba(195,200,193,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+#mobile-menu a:hover { color: #061b0e; }
+#mobile-menu a.active-page { color: #061b0e; }
+#mobile-menu .mobile-reserve {
+    display: block;
+    margin-top: 1.5rem;
+    background: #061b0e;
+    color: #ffffff !important;
+    padding: 14px 24px;
+    text-align: center;
+    border-bottom: none;
+    border-radius: 0;
+}
+#mobile-menu .mobile-reserve:hover { background: #1b3022; }
+.hamburger-open .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger-open .hamburger-line:nth-child(2) { opacity: 0; }
+.hamburger-open .hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+</style>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="La Locanda — Art &amp; Taste Retreat">
+<meta property="og:title" content="Reservas y Contacto | La Locanda">
+<meta property="og:description" content="Reservá tu estadía en La Locanda — Art & Taste Retreat. Hotel boutique con 14 habitaciones únicas en Puerto Iguazú, Argentina.">
+<meta property="og:image" content="https://lh3.googleusercontent.com/aida-public/AB6AXuBjt0BJDJORgjioI3hpcSr7mNyU1pIO0WSUC9qIi8OIFxsRbfQx8Mue3s42WHbzl9Kg_EnEdcdEVdYCGIeiwoWvE48VrSY6Y5bjizrQU83JLA1tyV7qtAgGB53X0mmnVJ_WTFeZdPZI5VdOdcAyrchPFyE1So10tiSBAfMuOatPLvvz-IHHRqNJ4Emhk5irQ1QxibgRbiJGTx96yw1Yzi3hJllYZGt7666VaKZyEWsxl_QLzcPLyRStx6uri_faif3BlEU0V0dFYcAw8Lc">
+<meta property="og:url" content="https://lalocandahotel.com/reservas-y-contacto.html">
+<meta name="description" content="Reservá tu estadía en La Locanda — Art & Taste Retreat. Hotel boutique con 14 habitaciones únicas en Puerto Iguazú, Argentina.">
+</head>
+<body class="bg-background text-on-background">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl transition-all duration-500 ease-in-out">
+<div class="flex justify-between items-center px-8 md:px-16 py-4 max-w-[1200px] mx-auto">
+<a href="inicio.html" class="flex flex-col leading-tight">
+<span class="font-display text-2xl tracking-tighter text-primary">La Locanda</span>
+<span class="font-body text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 -mt-1">Art &amp; Taste Retreat</span>
+</a>
+<div class="hidden md:flex items-center space-x-7">
+<a class="text-on-surface-variant font-body text-sm hover:text-primary transition-colors duration-300" href="inicio.html">Inicio</a>
+<a class="text-on-surface-variant font-body text-sm hover:text-primary transition-colors duration-300" href="la-casa.html">La Casa</a>
+<a class="text-on-surface-variant font-body text-sm hover:text-primary transition-colors duration-300" href="habitaciones.html">Habitaciones</a>
+<a class="text-on-surface-variant font-body text-sm hover:text-primary transition-colors duration-300" href="gastronomia.html">Gastronomía</a>
+<a class="text-on-surface-variant font-body text-sm hover:text-primary transition-colors duration-300" href="galeria-umbral.html">Umbral Art</a>
+<a class="text-on-surface-variant font-body text-sm hover:text-primary transition-colors duration-300" href="la-cava.html">La Cava</a>
+<a class="text-on-surface-variant font-body text-sm hover:text-primary transition-colors duration-300" href="galeria.html">Galería</a>
+</div>
+<button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] focus:outline-none" aria-label="Abrir menú" aria-expanded="false">
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+</button>
+<button class="hidden md:inline-block bg-primary text-on-primary px-6 py-2 text-sm font-medium tracking-wide transition-all duration-300 hover:bg-primary-container" onclick="alohaObject.open()">Reservar</button>
+</div>
+</nav>
+<div id="mobile-menu" role="navigation" aria-label="Menú móvil">
+<a href="inicio.html" class="">Inicio</a>
+<a href="la-casa.html" class="">La Casa</a>
+<a href="habitaciones.html" class="">Habitaciones</a>
+<a href="gastronomia.html" class="">Gastronomía</a>
+<a href="galeria-umbral.html" class="">Umbral Art</a>
+<a href="la-cava.html" class="">La Cava</a>
+<a href="galeria.html" class="">Galería</a>
+<a href="reservas-y-contacto.html" class="mobile-reserve">Reservar Ahora</a>
+</div>
+<!-- Hero Section -->
+<header class="relative h-[819px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" alt="Pileta de La Locanda al atardecer, con reposeras y luces cálidas" src="assets/reservas-img-1.jpg">
+<div class="absolute inset-0 bg-primary/10 backdrop-brightness-90 bg-gradient-to-b from-primary/40 via-transparent to-background"></div>
+</div>
+<div class="relative z-10 text-center px-margin-mobile">
+<span class="font-label-caps text-on-primary/80 mb-4 block">Bienvenido al Refugio</span>
+<h1 class="font-display text-5xl md:text-7xl text-on-primary mb-8 tracking-tight">Planifique su Estancia</h1>
+<!-- Reservation CTA -->
+<div class="bg-surface-container-lowest px-8 py-7 rounded-lg shadow-organic flex flex-col md:flex-row items-center gap-6 max-w-2xl mx-auto">
+<div class="flex items-center gap-4 text-left">
+<span class="material-symbols-outlined text-secondary text-3xl">calendar_month</span>
+<div>
+<p class="font-display text-lg text-primary leading-tight">¿Listo para su estadía?</p>
+<p class="font-body text-on-surface-variant text-sm">Consulte fechas y tarifas disponibles al instante.</p>
+</div>
+</div>
+<button class="bg-secondary text-on-secondary px-10 py-4 w-full md:w-auto font-medium tracking-wide transition-all hover:bg-secondary-container hover:text-on-secondary-container whitespace-nowrap" onclick="alohaObject.open()">Ver Disponibilidad</button>
+</div>
+</div>
+</header>
+<!-- Categorías de Habitaciones -->
+<section class="max-w-[1200px] mx-auto px-8 md:px-16 section-gap bg-background">
+<div class="text-center mb-16">
+<span class="font-label-caps text-secondary mb-4 block">Alojamiento</span>
+<h2 class="font-display text-4xl md:text-5xl text-primary">Nuestras Categorías</h2>
+<div class="w-24 h-px bg-outline-variant/50 mx-auto mt-6"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+<!-- Categoría 1: Superior -->
+<div class="group">
+<div class="overflow-hidden mb-6 image-mask-arch h-[420px]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Habitación Bianca, categoría Superior de La Locanda" src="assets/reservas-img-2.jpg">
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<h3 class="font-display text-2xl text-primary">Superior</h3>
+
+</div>
+<p class="text-on-surface-variant font-body leading-relaxed">Nuestra categoría más exclusiva. Espacios amplios con terminaciones premium, pensados para una estadía de máximo confort.</p>
+<div class="pt-2 border-t border-outline-variant/20">
+<p class="font-label-caps text-[11px] text-secondary mb-2">Habitaciones de esta categoría</p>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed">Naife · Le Arance · Macaia · Agua · Bianca</p>
+</div>
+<button class="inline-block border border-primary text-primary px-8 py-3 transition-all duration-300 hover:bg-primary hover:text-on-primary" onclick="alohaObject.open()">Reservar Ahora</button>
+</div>
+</div>
+
+<!-- Categoría 2: Suite -->
+<div class="group">
+<div class="overflow-hidden mb-6 image-mask-arch h-[420px]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Habitación Petra, categoría Suite de La Locanda" src="assets/reservas-img-3.jpg">
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<h3 class="font-display text-2xl text-primary">Suite</h3>
+
+</div>
+<p class="text-on-surface-variant font-body leading-relaxed">Ambientes cálidos con identidad propia, ideales para quienes buscan un equilibrio entre confort e intimidad.</p>
+<div class="pt-2 border-t border-outline-variant/20">
+<p class="font-label-caps text-[11px] text-secondary mb-2">Habitaciones de esta categoría</p>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed">Yatei · Dolce Vita · Camilla · Yrupé</p>
+</div>
+<button class="inline-block border border-primary text-primary px-8 py-3 transition-all duration-300 hover:bg-primary hover:text-on-primary" onclick="alohaObject.open()">Reservar Ahora</button>
+</div>
+</div>
+
+<!-- Categoría 3: Standard -->
+<div class="group">
+<div class="overflow-hidden mb-6 image-mask-arch h-[420px]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Habitación Dolce Vita, categoría Standard de La Locanda" src="assets/reservas-img-4.jpg">
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<h3 class="font-display text-2xl text-primary">Standard</h3>
+
+</div>
+<p class="text-on-surface-variant font-body leading-relaxed">La esencia de La Locanda en su forma más auténtica. Espacios acogedores rodeados de naturaleza, con todo lo necesario para descansar.</p>
+<div class="pt-2 border-t border-outline-variant/20">
+<p class="font-label-caps text-[11px] text-secondary mb-2">Habitaciones de esta categoría</p>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed">Petra · Alua · Coccola · Bambú · Besugo</p>
+</div>
+<button class="inline-block border border-primary text-primary px-8 py-3 transition-all duration-300 hover:bg-primary hover:text-on-primary" onclick="alohaObject.open()">Reservar Ahora</button>
+</div>
+</div>
+
+</div>
+</section>
+<!-- ═══════════════════════════════════════════════════════════════
+     RESERVAS — Conectado al sistema de gestión hotelera (Aloha)
+════════════════════════════════════════════════════════════════ -->
+<section id="motor-reservas" class="bg-surface-container-low py-24 px-8 md:px-16">
+  <div class="max-w-[700px] mx-auto text-center">
+    <span class="font-label-caps text-secondary mb-4 block">Reservas en Línea</span>
+    <h2 class="font-display text-4xl md:text-5xl text-primary mb-6">Reserve su Estadía</h2>
+    <div class="w-24 h-px bg-outline-variant/50 mx-auto mb-8"></div>
+    <p class="font-body text-on-surface-variant leading-relaxed mb-10 max-w-md mx-auto">
+      Verificamos disponibilidad y tarifas en tiempo real a través de nuestro sistema de gestión hotelera certificado, garantizando su confirmación al instante.
+    </p>
+    <button class="bg-primary text-on-primary px-12 py-4 font-label-caps text-xs tracking-widest hover:bg-primary-container transition-colors" onclick="alohaObject.open()">
+      Ver Disponibilidad y Reservar
+    </button>
+  </div>
+</section>
+
+<!-- Transition Divider -->
+<div class="w-full h-px bg-gradient-to-r from-transparent via-outline-variant/30 to-transparent"></div>
+<!-- Contact Section -->
+<section class="max-w-[1200px] mx-auto px-8 md:px-16 section-gap grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+<div class="space-y-12">
+<div>
+<span class="font-label-caps text-secondary mb-4 block">Atención Personalizada</span>
+<h2 class="font-display text-4xl md:text-5xl text-primary">Hablemos</h2>
+<p class="mt-6 text-on-surface-variant text-lg max-w-md font-body leading-relaxed">
+                    Estamos aquí para asegurar que su experiencia en La Locanda sea excepcional desde el primer contacto.
+                </p>
+</div>
+<div class="space-y-8">
+<div class="flex items-start gap-6">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-high text-primary">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<h4 class="font-label-caps text-[10px] text-on-surface-variant mb-1">Teléfono</h4>
+<p class="text-xl text-primary">+54 9 3757 213071</p>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-high text-primary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<h4 class="font-label-caps text-[10px] text-on-surface-variant mb-1">Correo Electrónico</h4>
+<p class="text-xl text-primary">contacto@lalocandahotel.com</p>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-high text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<h4 class="font-label-caps text-[10px] text-on-surface-variant mb-1">Ubicación</h4>
+<p class="text-xl text-primary">1º de Mayo 615 - Puerto Iguazu - Misiones</p>
+</div>
+</div>
+</div>
+<!-- Mapa real de Google Maps -->
+<div class="aspect-video w-full rounded-lg overflow-hidden shadow-organic">
+<iframe
+  src="https://www.google.com/maps?q=1%C2%BA%20de%20Mayo%20615%2C%20Puerto%20Iguaz%C3%BA%2C%20Misiones%2C%20Argentina&output=embed"
+  width="100%"
+  height="100%"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+</div>
+</div>
+
+</section>
+<!-- Footer -->
+<footer class="w-full py-24 px-8 md:px-16 bg-surface border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-[1200px] mx-auto">
+<div class="space-y-6">
+<a href="inicio.html" class="flex flex-col leading-tight">
+<span class="font-display text-3xl tracking-tighter text-primary block">La Locanda</span>
+<span class="font-body text-[11px] uppercase tracking-[0.2em] text-on-surface-variant/70">Art &amp; Taste Retreat</span>
+</a>
+<p class="text-on-surface-variant text-sm font-body leading-relaxed max-w-xs">
+                    Un refugio donde el arte y el sabor se encuentran en el corazón de Puerto Iguazú.
+                </p>
+</div>
+<div class="space-y-4">
+<h5 class="font-label-caps text-xs text-primary mb-6">Navegación</h5>
+<ul class="space-y-3">
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="la-casa.html">La Casa</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="habitaciones.html">Habitaciones</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="gastronomia.html">Gastronomía</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="#" onclick="alohaObject.open()">Reservar</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-label-caps text-xs text-primary mb-6">Social</h5>
+<ul class="space-y-3">
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="https://www.instagram.com/lalocanda_hotel/" target="_blank" rel="noopener">Instagram</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="#">LinkedIn</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="https://www.facebook.com/p/La-Locanda-Hotel-61573958709257/" target="_blank" rel="noopener">Facebook</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-label-caps text-xs text-primary mb-6">Legal</h5>
+<ul class="space-y-3">
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="privacidad.html">Política de Privacidad</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="terminos.html">Términos de Servicio</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-opacity opacity-80 hover:opacity-100" href="mailto:contacto@lalocandahotel.com">Contacto</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1200px] mx-auto mt-24 pt-8 border-t border-outline-variant/10 text-center">
+<p class="text-on-surface-variant text-[10px] font-label-caps opacity-60">© 2026 La Locanda - Art &amp; Taste Retreat. Todos los derechos reservados.</p>
+</div>
+</footer>
+
+<script>
+        // Simple Scroll interaction for Navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'bg-surface/90', 'shadow-sm');
+                nav.classList.remove('py-4', 'bg-surface/40');
+            } else {
+                nav.classList.add('py-4', 'bg-surface/40');
+                nav.classList.remove('py-2', 'bg-surface/90', 'shadow-sm');
+            }
+        });
+
+        
+    </script>
+
+
+
+
+
+
+<!-- ═══ Widget de Reservas — Aloha PMS ═══ -->
+<div id="aloha-widget"></div>
+<script type="text/javascript" src="https://booking-widget.aloha.co/aloha-booking-widget.umd.js"></script>
+<script>
+  const alohaObject = new AlohaBookingWidget({
+    key: '17d589ec-8055-4f51-b860-a2040c0dc284',
+  });
+</script>
+
+<script>
+// Mobile hamburger menu
+(function() {
+    var btn = document.getElementById('mobile-menu-btn');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function() {
+        var isOpen = menu.classList.contains('open');
+        if (isOpen) {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        } else {
+            menu.classList.add('open');
+            btn.classList.add('hamburger-open');
+            btn.setAttribute('aria-expanded', 'true');
+        }
+    });
+    // Close on link click
+    menu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        });
+    });
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+})();
+</script>
+</body></html>

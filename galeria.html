@@ -1,0 +1,468 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Galería - La Locanda</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=DM+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#7a532a",
+                    "surface-variant": "#e3e2df",
+                    "on-error-container": "#93000a",
+                    "background": "#faf9f5",
+                    "primary-fixed-dim": "#b4cdb8",
+                    "on-tertiary-fixed-variant": "#45492f",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#2c1600",
+                    "surface-container-high": "#e9e8e4",
+                    "surface-container-highest": "#e3e2df",
+                    "outline": "#737973",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#d0e9d4",
+                    "on-surface-variant": "#434843",
+                    "tertiary-container": "#2a2e16",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f4f4f0",
+                    "on-tertiary-container": "#929677",
+                    "surface": "#faf9f5",
+                    "secondary-container": "#ffca98",
+                    "outline-variant": "#c3c8c1",
+                    "secondary-fixed": "#ffdcbd",
+                    "primary": "#061b0e",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#e1e6c2",
+                    "surface-container": "#efeeea",
+                    "on-primary-container": "#819986",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dbdad6",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-primary-fixed": "#0b2013",
+                    "tertiary": "#161905",
+                    "surface-tint": "#4d6453",
+                    "on-secondary-fixed-variant": "#623f18",
+                    "on-primary-fixed-variant": "#364c3c",
+                    "tertiary-fixed-dim": "#c5c9a7",
+                    "secondary": "#7d562d",
+                    "on-surface": "#1b1c1a",
+                    "on-background": "#1b1c1a",
+                    "primary-container": "#1b3022",
+                    "on-tertiary-fixed": "#1a1d07",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#faf9f5",
+                    "secondary-fixed-dim": "#f0bd8b",
+                    "inverse-surface": "#2f312e",
+                    "inverse-primary": "#b4cdb8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "unit": "8px",
+                    "section-gap": "128px",
+                    "margin-mobile": "20px",
+                    "container-max": "1200px"
+            },
+            "fontFamily": {
+                    "body-md": ["DM Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-sm": ["Playfair Display"],
+                    "label-caps": ["DM Sans"],
+                    "body-lg": ["DM Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            background-color: rgba(250, 249, 245, 0.8);
+        }
+        .masonry {
+            columns: 1;
+        }
+        @media (min-width: 768px) {
+            .masonry {
+                columns: 2;
+            }
+        }
+        @media (min-width: 1024px) {
+            .masonry {
+                columns: 3;
+            }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 24px;
+        }
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gallery-card img {
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .gallery-card:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed-dim">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm shadow-primary/5">
+<div class="flex justify-between items-center px-8 md:px-16 py-4 max-w-[1200px] mx-auto">
+<a href="inicio.html" class="flex flex-col leading-tight">
+<span class="font-display text-2xl tracking-tighter text-primary">La Locanda</span>
+<span class="font-body text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 -mt-1">Art &amp; Taste Retreat</span>
+</a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="inicio.html">Inicio</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="la-casa.html">La Casa</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="habitaciones.html">Habitaciones</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="gastronomia.html">Gastronomía</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="galeria-umbral.html">Umbral Art</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="la-cava.html">La Cava</a>
+<a class="font-body text-sm uppercase tracking-widest text-primary border-b border-primary/30 pb-1 transition-colors duration-300" href="galeria.html">Galería</a>
+</div>
+<a class="bg-primary text-on-primary px-6 py-2 text-sm font-medium tracking-wide transition-all duration-300 hover:bg-primary-container whitespace-nowrap" href="reservas-y-contacto.html">Reservar Ahora</a>
+</div>
+</nav>
+<main class="pt-32 pb-section-gap">
+<!-- Hero Intro -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-24 text-center">
+<span class="font-label-caps text-label-caps text-on-secondary-container mb-4 block tracking-widest uppercase">Crónicas Visuales</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-8 leading-tight italic">
+                El Arte de la <br> Hospitalidad Etérea
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto opacity-80 leading-relaxed">
+                Descubra la armonía entre la arquitectura colonial y la naturaleza exuberante de Puerto Iguazú. Un refugio donde el tiempo se detiene.
+            </p>
+</section>
+<!-- Filter Chips -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-12 flex flex-wrap justify-center gap-4">
+<button class="filter-btn px-6 py-2 rounded-full border border-primary text-primary font-label-caps text-label-caps bg-primary/5" data-filter="todos">TODOS</button>
+<button class="filter-btn px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container transition-colors" data-filter="arquitectura">ARQUITECTURA</button>
+<button class="filter-btn px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container transition-colors" data-filter="jardines">JARDINES</button>
+<button class="filter-btn px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container transition-colors" data-filter="gastronomia">GASTRONOMÍA</button>
+<button class="filter-btn px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container transition-colors" data-filter="interiores">INTERIORES</button>
+</section>
+<!-- Gallery Masonry -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="masonry">
+<!-- Dining -->
+<div class="masonry-item reveal-up gallery-card group cursor-pointer overflow-hidden rounded-xl bg-surface-container-low active rounded-full" data-category="gastronomia" data-images='["https://res.cloudinary.com/kns9kycv/image/upload/v1783013727/1110_ghggiu.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783003551/374_ypa4uu.jpg", "https://res.cloudinary.com/kns9kycv/image/upload/v1782953226/croccante_mdzgem.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782953228/bife_de_choriza_b1ov6h.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782953049/PL12_lpwunj.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782953028/pl2_o3r0ep.png"]'>
+<img alt="Gastronomía" class="w-full h-auto object-cover" data-alt="Plato de risotto negro con base de tinta de calamar, coronado con una quenelle de crema de maíz y semillas tostadas, sobre cama de hojas verdes frescas, servido en plato hondo blanco sobre fondo negro." src="https://res.cloudinary.com/kns9kycv/image/upload/v1783013727/1110_ghggiu.png">
+<div class="p-6">
+<span class="font-label-caps text-label-caps text-on-secondary-container">Gastronomía</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-2">Sabores</h3>
+</div>
+</div>
+<!-- Interior -->
+<div class="masonry-item reveal-up gallery-card group cursor-pointer overflow-hidden rounded-xl bg-surface-container-low active rounded-full" data-category="interiores" data-images='["https://res.cloudinary.com/kns9kycv/image/upload/v1783012538/alua_bztt0b.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782951375/YR1_lol4mx.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782951374/DOR3_ms90xq.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782951371/DOR14_xwbi3i.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782951364/DOR7_syk5ym.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782951353/DOR2_ndcb6a.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783013398/petra_h9o54k.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783013344/Yatei_gclysv.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783013326/dolce_vita_2_vmqfra.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783013309/coccola_ee1adg.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783013266/cAMILLA_nmcaer.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783013178/besugo_dclioe.jpg", "https://res.cloudinary.com/kns9kycv/image/upload/v1783013161/bambu_jan7vu.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783013143/agua_lj2xx8.png"]'>
+<img alt="Suites" class="w-full h-auto object-cover" data-alt="Habitación con cama matrimonial de blanco impecable, almohadones color naranja terracota, cabecera tapizada beige, vigas de madera a la vista en el techo, lámpara artesanal de mimbre y obra de arte colorida en la pared." src="https://res.cloudinary.com/kns9kycv/image/upload/v1783012538/alua_bztt0b.png">
+<div class="p-6">
+<span class="font-label-caps text-label-caps text-on-secondary-container">Interiores</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-2">Pausa y Reposo</h3>
+</div>
+</div>
+<!-- Garden -->
+<div class="masonry-item reveal-up gallery-card group cursor-pointer overflow-hidden rounded-xl bg-surface-container-low active rounded-full" data-category="jardines" data-images='["https://res.cloudinary.com/kns9kycv/image/upload/v1783013563/ChatGPT_Image_4_jun_2026_11_20_04_p.m._ghgbjc.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783013583/ChatGPT_Image_13_jun_2026_19_28_26_gyyavg.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783013765/q1_xhwidg.jpg", "https://res.cloudinary.com/kns9kycv/image/upload/v1783013766/q2_yggzaj.jpg", "https://res.cloudinary.com/kns9kycv/image/upload/v1783015526/jar3_xffq2z.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783015527/jar_4_danf6h.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783015527/jar2_anqmap.png"]'>
+<img alt="Jardines" class="w-full h-auto object-cover" data-alt="Espacio de relax junto a la piscina con reposeras de mimbre oscuro, mesa de madera con frutas frescas, palmeras y vegetación tropical de fondo, luz natural cálida sobre el piso de baldosas terracota." src="https://res.cloudinary.com/kns9kycv/image/upload/v1783013563/ChatGPT_Image_4_jun_2026_11_20_04_p.m._ghgbjc.png">
+<div class="p-6">
+<span class="font-label-caps text-label-caps text-on-secondary-container">Jardines</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-2">Paz y Descanso</h3>
+</div>
+</div>
+<!-- Pool -->
+<div class="masonry-item reveal-up gallery-card group cursor-pointer overflow-hidden rounded-xl bg-surface-container-low active rounded-full" data-category="arquitectura" data-images='["https://res.cloudinary.com/kns9kycv/image/upload/v1783012296/PISCINA_001_dnke3w.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783003848/piscina_p7eifs.jpg", "https://res.cloudinary.com/kns9kycv/image/upload/v1783001066/hydro_wsui5x.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782999896/2_qp01ej.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782999896/7_-_copia_wxt4ku.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782999895/3_lpvxcc.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782953073/agua22_efxh1c.jpg", "https://res.cloudinary.com/kns9kycv/image/upload/v1782952898/AGUA2_umiar9.png"]'>
+<img alt="Piscina" class="w-full h-auto object-cover" data-alt="Piscina circular al atardecer con cielo en tonos naranja y violeta, rodeada de bambú y vegetación tropical iluminada con velas, sillones flotantes dentro del agua y canasto con toallas blancas en el borde." src="https://res.cloudinary.com/kns9kycv/image/upload/v1783012296/PISCINA_001_dnke3w.png">
+<div class="p-6">
+<span class="font-label-caps text-label-caps text-on-secondary-container">Arquitectura</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-2">Espacios de Agua</h3>
+</div>
+</div>
+<!-- Lobby -->
+<div class="masonry-item reveal-up gallery-card group cursor-pointer overflow-hidden rounded-xl bg-surface-container-low active rounded-full" data-category="interiores" data-images='["https://res.cloudinary.com/kns9kycv/image/upload/v1783013682/caball_ij8kmy.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1783003434/arte2_ielwnx.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782952850/rincon_1_qr4igu.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782952848/rincon_3_o2udsu.png", "https://res.cloudinary.com/kns9kycv/image/upload/v1782952848/riocon_2_jrpb2m.png"]'>
+<img alt="Salón" class="w-full h-auto object-cover" data-alt="Lounge interior con sillones de mimbre y tapizados beige, mesas de madera con velas encendidas, plantas colgantes y obras de arte coloridas en las paredes, techo de vigas de madera con luz natural cálida." src="https://res.cloudinary.com/kns9kycv/image/upload/v1783013682/caball_ij8kmy.png">
+<div class="p-6">
+<span class="font-label-caps text-label-caps text-on-secondary-container">Interiores</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-2">Rincón de Calma</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-section-gap">
+<div class="bg-surface-container py-24 px-12 text-center rounded-xl relative overflow-hidden rounded-full">
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 50% 50%, #061b0e 1px, transparent 1px); background-size: 40px 40px;"></div>
+<h2 class="font-display-lg text-headline-md md:text-display-lg text-primary mb-8 italic">¿Listo para vivir la experiencia?</h2>
+<button class="bg-primary text-on-primary px-12 py-4 rounded-lg font-body-md hover:bg-on-primary-container transition-all duration-500 shadow-xl shadow-primary/5" onclick="location.href='reservas-y-contacto.html'">
+                    Reservar Estancia
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low text-on-surface w-full py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="flex flex-col gap-6">
+<a href="inicio.html" class="block">
+<img src="assets/logo-footer.png" alt="La Locanda - Art &amp; Taste Retreat" class="h-32 w-auto">
+</a>
+<p class="font-body-md text-on-surface-variant max-w-xs">Una oda a la paz y el refinamiento en el corazón de Puerto Iguazú.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-on-secondary-container tracking-widest">MAPA DEL SITIO</h4>
+<ul class="flex flex-col gap-3">
+<li class=""><a class="hover:text-primary transition-colors" href="la-casa.html">La Casa</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="habitaciones.html">Habitaciones</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="gastronomia.html">Gastronomia</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="galeria.html">Galeria</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="galeria-umbral.html">Umbral Art</a></li>
+</ul>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-on-secondary-container tracking-widest">CONTACTO</h4>
+<p class="font-body-md text-on-surface-variant">contacto@lalocandahotel.com</p>
+<p class="font-body-md text-on-surface-variant">+54 9 3757 213071</p>
+<div class="flex gap-4 mt-4">
+
+
+</div>
+</div>
+</div>
+<div class="mt-24 pt-8 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-md text-on-surface-variant opacity-60">© 2026 CARRA STUDIO Puerto Iguazú.</p>
+<div class="flex gap-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="privacidad.html">PRIVACIDAD</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="terminos.html">TERMINOS</a>
+</div>
+</div>
+</footer>
+<!-- Simple Lightbox Micro-interaction -->
+<div class="fixed inset-0 z-[100] bg-primary/95 hidden items-center justify-center p-4 backdrop-blur-xl transition-all duration-500 opacity-0" id="lightbox">
+<button class="absolute top-8 right-8 text-on-primary" id="close-lightbox">
+<span class="material-symbols-outlined text-4xl">close</span>
+</button>
+<button class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-on-primary hover:opacity-70 transition-opacity" id="prev-lightbox">
+<span class="material-symbols-outlined text-5xl">chevron_left</span>
+</button>
+<button class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-on-primary hover:opacity-70 transition-opacity" id="next-lightbox">
+<span class="material-symbols-outlined text-5xl">chevron_right</span>
+</button>
+<img class="max-w-full max-h-[870px] object-contain rounded-sm shadow-2xl" id="lightbox-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgcng9IjgiIGZpbGw9IiNlOGVhZWQiLz48cGF0aCBkPSJNMTcwIDEzMCBsMzAgNDAgbDIwLTE1IGw0MCA1NSBIMTQweiIgZmlsbD0iI2JkYzFjNiIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEyMCIgcj0iMTgiIGZpbGw9IiNiZGMxYzYiLz48L3N2Zz4=">
+<div class="absolute bottom-8 left-0 w-full text-center text-on-primary font-label-caps text-label-caps tracking-widest" id="lightbox-counter"></div>
+</div>
+<script>
+        // Reveal Animations on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+        // Carousel Lightbox Logic (uno por categoría)
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeLightbox = document.getElementById('close-lightbox');
+        const prevLightbox = document.getElementById('prev-lightbox');
+        const nextLightbox = document.getElementById('next-lightbox');
+        const lightboxCounter = document.getElementById('lightbox-counter');
+
+        let currentImages = [];
+        let currentIndex = 0;
+
+        function renderLightboxImage() {
+            lightboxImg.src = currentImages[currentIndex];
+            if (currentImages.length > 1) {
+                lightboxCounter.textContent = (currentIndex + 1) + ' / ' + currentImages.length;
+                lightboxCounter.classList.remove('hidden');
+                prevLightbox.classList.remove('hidden');
+                nextLightbox.classList.remove('hidden');
+            } else {
+                lightboxCounter.classList.add('hidden');
+                prevLightbox.classList.add('hidden');
+                nextLightbox.classList.add('hidden');
+            }
+        }
+
+        document.querySelectorAll('.gallery-card').forEach(card => {
+            const img = card.querySelector('img');
+            img.addEventListener('click', () => {
+                let images;
+                try {
+                    images = JSON.parse(card.dataset.images || '[]');
+                } catch (e) {
+                    images = [];
+                }
+                currentImages = images.length ? images : [img.src];
+                currentIndex = 0;
+                renderLightboxImage();
+                lightbox.classList.remove('hidden');
+                lightbox.classList.add('flex');
+                setTimeout(() => {
+                    lightbox.classList.remove('opacity-0');
+                    lightbox.classList.add('opacity-100');
+                }, 10);
+            });
+        });
+
+        function showPrev() {
+            if (!currentImages.length) return;
+            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            renderLightboxImage();
+        }
+
+        function showNext() {
+            if (!currentImages.length) return;
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            renderLightboxImage();
+        }
+
+        prevLightbox.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+        nextLightbox.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('hidden')) return;
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'Escape') closeFunc();
+        });
+
+        // Swipe táctil para mobile
+        let touchStartX = 0;
+        lightbox.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        lightbox.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            const diff = touchEndX - touchStartX;
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? showPrev() : showNext();
+            }
+        });
+
+        const closeFunc = () => {
+            lightbox.classList.add('opacity-0');
+            lightbox.classList.remove('opacity-100');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+            }, 500);
+        };
+
+        closeLightbox.addEventListener('click', closeFunc);
+        lightbox.addEventListener('click', (e) => {
+            if(e.target === lightbox) closeFunc();
+        });
+
+        // Filter bar logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.masonry-item[data-category]');
+        const activeClasses = ['border-primary','text-primary','bg-primary/5'];
+        const inactiveClasses = ['border-outline-variant','text-on-surface-variant'];
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+
+                // Actualizar estilos del botón activo
+                filterBtns.forEach(b => {
+                    b.classList.remove(...activeClasses);
+                    b.classList.add(...inactiveClasses);
+                });
+                btn.classList.add(...activeClasses);
+                btn.classList.remove(...inactiveClasses);
+
+                // Filtrar cards con fade
+                cards.forEach(card => {
+                    const match = filter === 'todos' || card.dataset.category === filter;
+                    if (match) {
+                        card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                        card.style.pointerEvents = 'auto';
+                        card.style.display = '';
+                    } else {
+                        card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.97)';
+                        card.style.pointerEvents = 'none';
+                        setTimeout(() => {
+                            if (card.dataset.category !== filter && filter !== 'todos') {
+                                card.style.display = 'none';
+                            }
+                        }, 350);
+                    }
+                });
+            });
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('h-16');
+                header.classList.remove('h-20');
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.add('h-20');
+                header.classList.remove('h-16');
+                header.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<title>Gastronomía | De la Fonte | La Locanda</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#929677",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#0b2013",
+                    "background": "#faf9f5",
+                    "surface": "#faf9f5",
+                    "surface-container-high": "#e9e8e4",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#d0e9d4",
+                    "surface-container-highest": "#e3e2df",
+                    "secondary-fixed": "#ffdcbd",
+                    "on-tertiary-fixed-variant": "#45492f",
+                    "on-surface-variant": "#434843",
+                    "on-primary-container": "#819986",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary-container": "#7a532a",
+                    "on-tertiary-fixed": "#1a1d07",
+                    "on-secondary-fixed-variant": "#623f18",
+                    "surface-container-low": "#f4f4f0",
+                    "tertiary": "#161905",
+                    "secondary-fixed-dim": "#f0bd8b",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary": "#061b0e",
+                    "inverse-primary": "#b4cdb8",
+                    "surface-tint": "#4d6453",
+                    "surface-dim": "#dbdad6",
+                    "outline": "#737973",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#e1e6c2",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2f312e",
+                    "surface-variant": "#e3e2df",
+                    "surface-container": "#efeeea",
+                    "tertiary-fixed-dim": "#c5c9a7",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#1b1c1a",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#c3c8c1",
+                    "secondary-container": "#ffca98",
+                    "secondary": "#7d562d",
+                    "on-secondary-fixed": "#2c1600",
+                    "on-surface": "#1b1c1a",
+                    "primary-container": "#1b3022",
+                    "primary-fixed-dim": "#b4cdb8",
+                    "surface-bright": "#faf9f5",
+                    "tertiary-container": "#2a2e16",
+                    "on-primary-fixed-variant": "#364c3c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "section-gap": "128px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "container-max": "1200px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-sm": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "body-lg": ["DM Sans"],
+                    "body-md": ["DM Sans"],
+                    "label-caps": ["DM Sans"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            background-color: rgba(250, 249, 245, 0.8);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    
+#mobile-menu {
+    display: none;
+    position: fixed;
+    top: 57px;
+    left: 0;
+    width: 100%;
+    background: rgba(250, 249, 245, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 49;
+    border-top: 1px solid rgba(195,200,193,0.2);
+    padding: 1.5rem 2rem 2rem;
+    box-shadow: 0 8px 24px rgba(6,27,14,0.06);
+}
+#mobile-menu.open {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+#mobile-menu a {
+    display: block;
+    padding: 14px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #434843;
+    border-bottom: 0.5px solid rgba(195,200,193,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+#mobile-menu a:hover { color: #061b0e; }
+#mobile-menu a.active-page { color: #061b0e; }
+#mobile-menu .mobile-reserve {
+    display: block;
+    margin-top: 1.5rem;
+    background: #061b0e;
+    color: #ffffff !important;
+    padding: 14px 24px;
+    text-align: center;
+    border-bottom: none;
+    border-radius: 0;
+}
+#mobile-menu .mobile-reserve:hover { background: #1b3022; }
+.hamburger-open .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger-open .hamburger-line:nth-child(2) { opacity: 0; }
+.hamburger-open .hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+</style>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="La Locanda — Art &amp; Taste Retreat">
+<meta property="og:title" content="Gastronomía | De la Fonte | La Locanda">
+<meta property="og:description" content="Restaurante De la Fonte: cocina de autor, desayunos personalizados y una cava de vinos curada en el corazón de La Locanda, Puerto Iguazú.">
+<meta property="og:image" content="https://lh3.googleusercontent.com/aida-public/AB6AXuCbETBSDhqFap9BuNqR8_XvzREs9IUV3bcsxoBLA5e19_b2T4pBnRbZB7Npt80jylg9GgQY8SPiHdZ-vttYp_qKR_nKNr70_CiV5eWqYvMYazEfvML8zCH9ae4MMxWTEBro5j7vE1gTggzhtwde417D-VaRKeVbO2nm_qb1l-asHTg-IWmes2VOxGO7kghSixdMrlIsZ0kyiiDBxpa_bwusDq_7LVphRmtwmiY-Oe51Y4iDJeRpE7MBTT2Q1XcoCE3sIlXoNeuwSXEXZpw">
+<meta property="og:url" content="https://lalocandahotel.com/gastronomia.html">
+<meta name="description" content="Restaurante De la Fonte: cocina de autor, desayunos personalizados y una cava de vinos curada en el corazón de La Locanda, Puerto Iguazú.">
+</head>
+<body class="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm shadow-primary/5">
+<div class="flex justify-between items-center px-8 md:px-16 py-4 max-w-[1200px] mx-auto">
+<a href="inicio.html" class="flex flex-col leading-tight">
+<span class="font-display text-2xl tracking-tighter text-primary">La Locanda</span>
+<span class="font-body text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 -mt-1">Art &amp; Taste Retreat</span>
+</a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="inicio.html">Inicio</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="la-casa.html">La Casa</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="habitaciones.html">Habitaciones</a>
+<a class="font-body text-sm uppercase tracking-widest text-primary border-b border-primary/30 pb-1 transition-colors duration-300" href="gastronomia.html">Gastronomía</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="galeria-umbral.html">Umbral Art</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="la-cava.html">La Cava</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="galeria.html">Galería</a>
+</div>
+<button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] focus:outline-none" aria-label="Abrir menú" aria-expanded="false">
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+</button>
+<a class="hidden md:inline-block bg-primary px-6 py-2 text-sm font-medium tracking-wide transition-all duration-300 hover:bg-primary-container whitespace-nowrap" style="color:#ffffff;" href="reservas-y-contacto.html">Reservar Ahora</a>
+</div>
+</nav>
+<div id="mobile-menu" role="navigation" aria-label="Menú móvil">
+<a href="inicio.html" class="">Inicio</a>
+<a href="la-casa.html" class="">La Casa</a>
+<a href="habitaciones.html" class="">Habitaciones</a>
+<a href="gastronomia.html" class="active-page">Gastronomía</a>
+<a href="galeria-umbral.html" class="">Umbral Art</a>
+<a href="la-cava.html" class="">La Cava</a>
+<a href="galeria.html" class="">Galería</a>
+<a href="reservas-y-contacto.html" class="mobile-reserve">Reservar Ahora</a>
+</div>
+<!-- Hero Section -->
+<header class="relative h-[600px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center scale-105 rounded-3xl" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCbETBSDhqFap9BuNqR8_XvzREs9IUV3bcsxoBLA5e19_b2T4pBnRbZB7Npt80jylg9GgQY8SPiHdZ-vttYp_qKR_nKNr70_CiV5eWqYvMYazEfvML8zCH9ae4MMxWTEBro5j7vE1gTggzhtwde417D-VaRKeVbO2nm_qb1l-asHTg-IWmes2VOxGO7kghSixdMrlIsZ0kyiiDBxpa_bwusDq_7LVphRmtwmiY-Oe51Y4iDJeRpE7MBTT2Q1XcoCE3sIlXoNeuwSXEXZpw&quot;);"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 rounded-3xl"></div>
+</div>
+<div class="relative z-10 text-center px-margin-mobile md:px-margin-desktop max-w-4xl reveal active">
+<p class="font-label-caps text-label-caps text-white tracking-[0.3em] uppercase mb-6">Restaurante De la Fonte</p>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white leading-tight">Un refugio donde el arte, la naturaleza y la buena mesa se encuentran</h1>
+<div class="mt-12 flex justify-center">
+<span class="material-symbols-outlined text-white text-4xl animate-bounce">expand_more</span>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Philosophy Section -->
+<section class="py-section-gap grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 reveal active">
+<p class="font-label-caps text-label-caps text-secondary mb-4 uppercase">El Concepto</p>
+<h2 class="font-headline-md text-headline-md text-primary mb-8 italic">Cocina de Autor y pasión por la gastronomía.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">La experiencia se completa en De la Fonte, nuestro restaurante de cocina de autor, donde cada plato nace del respeto por los ingredientes y la pasión por la gastronomía. El desayuno, personalizado para cada huésped, transforma el inicio del día en un momento especial.</p>
+</div>
+<div class="md:col-span-6 md:col-start-7 reveal active">
+<div class="aspect-[4/5] overflow-hidden shadow-xl rounded-3xl">
+<img alt="Plato sofisticado de cocina de autor" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4aZKQRKhft6c6KVCc0kYMsI031p8rXQ80--9-B5SzBZDjvnNEPUiwRHVm6qnWhnZm6nuGKp0GWo3BwiJYlwAlxBI2y4P2GNfPK30S5ANUgHPtxPbENIemaxVnQrT8vU-io20GOQ7_6r58o3-hOfry5f1b30gtUTM3kAfD9hGvjocX5DI5UCUxme0yg829rJFNkUfOqE0psoGGfemti2CYhnEEBrMdXX5lpeYS9X7CbFs97cVPQGQET5DzFYjerQ1Ox5qtb6k4--N5">
+</div>
+</div>
+</section>
+<!-- Breakfast & Art Integration -->
+<section class="py-section-gap">
+<div class="text-center mb-16 reveal active">
+<p class="font-label-caps text-label-caps text-secondary uppercase mb-4">El Ritual del Inicio</p>
+<h2 class="font-headline-md text-headline-md text-primary">Cocina y desayunos que celebran el inicio del día</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter h-full reveal active">
+<!-- Large Feature -->
+<div class="md:col-span-2 relative group overflow-hidden h-[600px] rounded-3xl">
+<img alt="Desayuno personalizado en el jardín de La Locanda" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARjKtyMxL4WKe92LYzNBvAowvKpJ3630hNO7jobxyWNixUJ_YVVslbpoo0_qkqQ4HVr4HFXBzGnJGOGnogirOWGgqgoqeeHiejhLE1RDpv4VsAtF_JYegNM7-U_VmJ5dt_9TLiskPx3Vz8FVh6xgt6KALCnrr8ZWd34xSE6y29T2VsT60F6vCNwTpJL8yihFBEpLu56H3zImY6TP2O47WUrWn1E_QiwPMA9d_HNnp6S7AX0CWmGYJl31pLs5RCi8TZoRX_6h99I5irucI">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+<div class="absolute bottom-10 left-10 text-white">
+<h3 class="font-headline-sm text-headline-sm mb-2">Desayuno&nbsp;</h3>
+<p class="font-body-md opacity-90">respetando gustos y celebrando la frescura local.</p>
+</div>
+</div>
+<!-- Stacked Details -->
+<div class="flex flex-col gap-gutter">
+<div class="flex-1 bg-surface-container-low p-8 flex flex-col justify-center border-l-2 border-secondary/20">
+<span class="material-symbols-outlined text-secondary text-3xl mb-4">palette</span>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-4">Umbral Art</h4>
+<p class="font-body-md text-on-surface-variant">Un espacio donde el arte y el sabor coexisten, elevando cada comida a una experiencia estética completa.</p>
+</div>
+<div class="flex-1 relative overflow-hidden rounded-3xl">
+<img alt="Detalle de ingrediente fresco de estación" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiU1H1HQW36CmZrBuk57y9oN6OohBr6EW09x_aZovgSIlqX0aXCWcAxONhpWi7Tb-KPSgnshfgfmRSjfBRJt06a0PKxbSEBYT4lNKOjpJ8giwi9_WkSikT7Ls96zb5hoLn4mbDiaulWA-caOX4K94dzLQnbKOSDAtZFvyfsznJ2jjUT895gmih1jRnjXG7RGv7JSBhk-QTKYwSqOhIob6ioFpzxLLc9eQ-ZFWirxRjFQO1Dv3p2Xqz6X9XZMHOxz4ejd6gHfUkRvukfY8">
+</div>
+</div>
+</div>
+</section>
+<!-- Cava de Vinos Section -->
+<section class="py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-end mb-12">
+<div class="md:col-span-7 reveal active">
+<p class="font-label-caps text-label-caps text-secondary uppercase mb-4">La Cava</p>
+<h2 class="font-headline-md text-headline-md text-primary">Una cava curada para maridar momentos de quietud</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-6 max-w-lg leading-relaxed">
+                    Nuestra <strong>Cava de Vinos</strong> alberga una selección meticulosa de etiquetas, elegidas para complementar la propuesta de autor y enriquecer la experiencia gastronómica con cada copa.
+                </p>
+</div>
+<div class="md:col-span-5 flex justify-end reveal active">
+<div class="flex items-center gap-4 text-primary border-b border-primary/20 pb-4">
+
+
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 reveal active">
+<div class="space-y-12">
+<div class="group">
+<div class="overflow-hidden mb-6 aspect-video rounded-3xl">
+<img alt="Cena íntima con maridaje de vinos" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArvvAaod9evNEqmpP-_sqOaI_i_qsVFd24wxPb-dQ2vZQ_-PacTIsvZaKMydPMzWtArdNh5_v1yzTSxNr41LqGudvL5RhGo8lCzE-o10JANUWwiX2ToYeak-hsidrsV3HpyAqSexCx1Mqb8JQNi66B4Bhg46PVQgMPgdZH7_cRV36um_LqwDmv3dMHnPvHUfI-j6jtN54PmtRQoOqBPG5flPyM5b7_u1rSZ0VBXDOZZHT9eEE4QcegtcQBoskFDbJnzuhtCi87Z2AW_Sg">
+</div>
+<div class="flex justify-between items-baseline border-b border-outline-variant pb-2">
+<h4 class="font-headline-sm text-headline-sm text-primary">Cenas de Autor</h4>
+<span class="font-body-md text-secondary">Respeto al Ingrediente</span>
+</div>
+<p class="font-body-md text-on-surface-variant mt-4">Menús que varían con la estación, diseñados para maridar perfectamente con los tesoros de nuestra cava.</p>
+</div>
+<div class="bg-surface-container-high p-12 rounded-sm flex flex-col md:flex-row gap-8 items-center">
+<div class="flex-1">
+<h4 class="font-headline-sm text-headline-sm text-primary mb-2">Pasión Culinaria</h4>
+<p class="font-body-md text-on-surface-variant">Cada detalle del servicio refleja nuestra devoción por la hospitalidad etérea y la excelencia.</p>
+</div>
+<div class="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-white shadow-sm">
+<img alt="Detalle de vino vertiéndose en copa" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo_MCGg4h5DmfDoBA2JSFTesn6RkzStv5Uj9ZLSMb173LzJXUgZUsr7-ofHBllLAqjhAqPAmIkBA4RjDYjX131CSBucqNi82uXy0BDAiXF7xFZt57UVrvXSh4hRvzqt77a9XDB8cr97FTujyPDTjsbRVVq-iS4tCjmirE3EbOGsQY60fSyALrE0nSlrrW20l0HYhb3SpW91dG9SdrBsG12m62TPxixQsTBmEsFp6vx9-DlsHX4Syk4xraF2SXG5pXluK6sjvDW5UCu">
+</div>
+</div>
+</div>
+<div class="md:pt-24 space-y-12">
+<div class="aspect-[3/4] overflow-hidden shadow-2xl relative rounded-3xl">
+<img alt="Ambiente de la cava de vinos en De la Fonte" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFF3oNo99XLS-IZtNHzNQtdSbOArWgQ6VhVgRi8KKBsoGNwQG2QE-uM38c9Xvk5WJ0As08NJ2QP_RBmYzLTYeJuYyhU7bHmt31pVpb3ZYrmWRGbco-KmdJrJIbl4ikjvstg2-YcH7_ZxsSAJaHg8m35fgeNCbPmh6Y5iqpT0ogQzDJrEXE7KeF9t1GfjbRVM08eFs8KYQDE7O4_miqF27HX_jftS5gfJrSAMpTBFoPRuR568X3Z6INDYD9a3Ay7-RFEZI6_dvPJbdu5Ps">
+<div class="absolute inset-0 ring-1 ring-inset ring-white/10"></div>
+</div>
+<blockquote class="border-l-4 border-secondary pl-8 py-4">
+<p class="font-headline-sm text-headline-sm text-primary italic leading-tight">"Una sinfonía de sabores donde el respeto por el producto es nuestra mayor obra de arte."</p>
+<cite class="font-label-caps text-label-caps text-on-surface-variant mt-4 block uppercase tracking-widest">— Chef De la Fonte</cite>
+</blockquote>
+</div>
+</div>
+</section>
+<!-- Reservation CTA Section -->
+<section class="py-section-gap">
+<div class="bg-primary-container text-on-primary-container p-16 md:p-24 text-center reveal active rounded-3xl">
+<h2 class="font-display-lg text-headline-md md:text-display-lg mb-8">Viva la experiencia De la Fonte.</h2>
+<div class="flex flex-col md:flex-row justify-center items-center gap-gutter">
+<a href="https://delafonteresto.com/#" target="_blank" rel="noopener" class="bg-secondary text-on-secondary px-10 py-4 rounded-sm font-label-caps text-label-caps uppercase tracking-widest hover:bg-secondary-fixed-dim transition-all duration-300 inline-block">
+                    Reservar Cena
+                </a>
+<a href="https://delafonteresto.com/03-experiencias.html" target="_blank" rel="noopener" class="border border-on-primary-container/30 text-on-primary-container px-10 py-4 rounded-sm font-label-caps text-label-caps uppercase tracking-widest hover:bg-on-primary-container/10 transition-all duration-300 inline-block">
+                    Experiencias</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low text-on-surface w-full py-section-gap px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-gutter max-w-container-max mx-auto">
+<div class="flex flex-col justify-between">
+<div class="mb-8 md:mb-0">
+<a href="inicio.html" class="block mb-6"><img alt="La Locanda - Art &amp; Taste Retreat" class="h-28 w-auto" src="assets/logo-footer.png"></a>
+<p class="font-body-md text-on-surface-variant max-w-xs">Un santuario íntimo en Puerto Iguazú, donde el arte, la naturaleza y el lujo encuentran la armonía perfecta.</p>
+</div>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mt-12 md:mt-0 opacity-60">© 2026 CARRA STUDIO - Puerto Iguazú - Misiones</p>
+</div>
+<div class="flex flex-col space-y-4">
+<h5 class="font-label-caps text-label-caps text-primary uppercase mb-4">Descubrir</h5>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="la-casa.html">La Casa</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="habitaciones.html">Habitaciones</a>
+<a class="font-body-md text-body-md text-primary font-medium" href="gastronomia.html">Gastronomía</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="galeria.html">Galería</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="galeria-umbral.html">Umbral Art</a>
+</div>
+<div class="flex flex-col">
+<h5 class="font-label-caps text-label-caps text-primary uppercase mb-6">Conexiones</h5>
+<div class="flex space-x-6 mb-8">
+<a class="text-on-surface-variant hover:text-secondary transition-opacity duration-300" href="https://www.instagram.com/lalocanda_hotel/" target="_blank" rel="noopener">Instagram</a>
+<a class="text-on-surface-variant hover:text-secondary transition-opacity duration-300" href="https://www.facebook.com/p/La-Locanda-Hotel-61573958709257/" target="_blank" rel="noopener">Facebook</a>
+<a class="text-on-surface-variant hover:text-secondary transition-opacity duration-300" href="#">LinkedIn</a>
+</div>
+<div class="mt-auto pt-8 border-t border-outline-variant/30">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Consultas</p>
+<p class="font-headline-sm text-headline-sm text-primary">contacto@lalocandahotel.com</p>
+</div>
+</div>
+</footer>
+<script>
+    // Scroll Reveal Animation
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 150;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal();
+
+    // Simple Nav Backdrop Shift
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.classList.add('shadow-sm');
+            nav.classList.add('h-16');
+            nav.classList.remove('h-20');
+        } else {
+            nav.classList.remove('shadow-sm');
+            nav.classList.remove('h-16');
+            nav.classList.add('h-20');
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Mobile hamburger menu
+(function() {
+    var btn = document.getElementById('mobile-menu-btn');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function() {
+        var isOpen = menu.classList.contains('open');
+        if (isOpen) {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        } else {
+            menu.classList.add('open');
+            btn.classList.add('hamburger-open');
+            btn.setAttribute('aria-expanded', 'true');
+        }
+    });
+    // Close on link click
+    menu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        });
+    });
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+})();
+</script>
+</body></html>

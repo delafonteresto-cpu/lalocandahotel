@@ -1,0 +1,601 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Habitaciones y Suites | Art &amp; Taste Retreat | La Locanda</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#929677",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#0b2013",
+                        "background": "#faf9f5",
+                        "surface": "#faf9f5",
+                        "surface-container-high": "#e9e8e4",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#d0e9d4",
+                        "surface-container-highest": "#e3e2df",
+                        "secondary-fixed": "#ffdcbd",
+                        "on-tertiary-fixed-variant": "#45492f",
+                        "on-surface-variant": "#434843",
+                        "on-primary-container": "#819986",
+                        "inverse-on-surface": "#f2f1ed",
+                        "on-secondary-container": "#7a532a",
+                        "on-tertiary-fixed": "#1a1d07",
+                        "on-secondary-fixed-variant": "#623f18",
+                        "surface-container-low": "#f4f4f0",
+                        "tertiary": "#161905",
+                        "secondary-fixed-dim": "#f0bd8b",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary": "#061b0e",
+                        "inverse-primary": "#b4cdb8",
+                        "surface-tint": "#4d6453",
+                        "surface-dim": "#dbdad6",
+                        "outline": "#737973",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e1e6c2",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f312e",
+                        "surface-variant": "#e3e2df",
+                        "surface-container": "#efeeea",
+                        "tertiary-fixed-dim": "#c5c9a7",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1b1c1a",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c3c8c1",
+                        "secondary-container": "#ffca98",
+                        "secondary": "#7d562d",
+                        "on-secondary-fixed": "#2c1600",
+                        "on-surface": "#1b1c1a",
+                        "primary-container": "#1b3022",
+                        "primary-fixed-dim": "#b4cdb8",
+                        "surface-bright": "#faf9f5",
+                        "tertiary-container": "#2a2e16",
+                        "on-primary-fixed-variant": "#364c3c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "section-gap": "128px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-lg": ["DM Sans"],
+                        "body-md": ["DM Sans"],
+                        "label-caps": ["DM Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #faf9f5;
+            color: #1b1c1a;
+            scroll-behavior: smooth;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            background-color: rgba(250, 249, 245, 0.8);
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(250, 249, 245, 0) 0%, rgba(250, 249, 245, 1) 100%);
+        }
+        .card-hover-image {
+            transition: transform 1.2s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+        .card-container:hover .card-hover-image {
+            transform: scale(1.03);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Hover Preview Styles */
+        #hover-preview {
+            pointer-events: none;
+            position: fixed;
+            z-index: 100;
+            width: 280px;
+            height: 180px;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.9);
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            border-radius: 0.125rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        #hover-preview.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+    
+#mobile-menu {
+    display: none;
+    position: fixed;
+    top: 57px;
+    left: 0;
+    width: 100%;
+    background: rgba(250, 249, 245, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 49;
+    border-top: 1px solid rgba(195,200,193,0.2);
+    padding: 1.5rem 2rem 2rem;
+    box-shadow: 0 8px 24px rgba(6,27,14,0.06);
+}
+#mobile-menu.open {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+#mobile-menu a {
+    display: block;
+    padding: 14px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #434843;
+    border-bottom: 0.5px solid rgba(195,200,193,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+#mobile-menu a:hover { color: #061b0e; }
+#mobile-menu a.active-page { color: #061b0e; }
+#mobile-menu .mobile-reserve {
+    display: block;
+    margin-top: 1.5rem;
+    background: #061b0e;
+    color: #ffffff !important;
+    padding: 14px 24px;
+    text-align: center;
+    border-bottom: none;
+    border-radius: 0;
+}
+#mobile-menu .mobile-reserve:hover { background: #1b3022; }
+.hamburger-open .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger-open .hamburger-line:nth-child(2) { opacity: 0; }
+.hamburger-open .hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+</style>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="La Locanda — Art &amp; Taste Retreat">
+<meta property="og:title" content="Habitaciones y Suites | La Locanda">
+<meta property="og:description" content="14 refugios únicos con identidad propia. Suites y ateliers de bienestar diseñados para parejas que buscan tranquilidad, romance y arte en Puerto Iguazú.">
+<meta property="og:image" content="https://lh3.googleusercontent.com/aida-public/AB6AXuBc2U9C-9ZusGQFwwqUm41Qs4MjAI1-g0VT7oGXWLSSez4-saHW_-TnwPNxvocRxh1JAc6yr6zYFvd8N96bRCKzqXj7Ff89uAs-BghMTCamzywNInr70olM8SHYVWEQ85zmAA4cWcbbPnHpji0cVh00Cv0B0ITeRKdwjtXrDLpC3wTQQVyxsHUCZPw56KEOPiz72u64KqAbYtj8w9RPnjXfrjA1MvTyGETYJNRRZTNrLxN_oSuKeI3986rSALmh3NuPnTGsCWqdYc_SuBg">
+<meta property="og:url" content="https://lalocandahotel.com/habitaciones.html">
+<meta name="description" content="14 refugios únicos con identidad propia. Suites y ateliers de bienestar diseñados para parejas que buscan tranquilidad, romance y arte en Puerto Iguazú.">
+</head>
+<body class="font-body-md text-body-md antialiased overflow-x-hidden">
+<!-- Floating Preview Container -->
+<div class="hidden md:block rounded-xl active" id="hover-preview" style="left: 790px; top: 2541px;">
+<img alt="Room Preview" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfU3qO92dGozkZLP96iBYu_8VoMVcQd6rhThBB9lU-lxawq3IWptvmSIBGmRyRyNA1TcUp07ir6DlWoV77j1whvnK7QNyAxgOYv4aju5rnOALJnZvuHbJalvfA84FhriDmB8cAi--AcbbdSJHmDPeBYz4Pz-o4hnm956YT_BKhMkLq4quj-YyjYBpm2u2UMFsGgsAuhkLOs_z1d98sbgLOZZTYZoYMp6ajZCfTCa67GwXXCCFHkj-HvG22wKOf05qEprzaRuforWD7">
+</div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm shadow-primary/5">
+<div class="flex justify-between items-center px-8 md:px-16 py-4 max-w-[1200px] mx-auto">
+<a href="inicio.html" class="flex flex-col leading-tight">
+<span class="font-display text-2xl tracking-tighter text-primary">La Locanda</span>
+<span class="font-body text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 -mt-1">Art &amp; Taste Retreat</span>
+</a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="inicio.html">Inicio</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="la-casa.html">La Casa</a>
+<a class="font-body text-sm uppercase tracking-widest text-primary border-b border-primary/30 pb-1 transition-colors duration-300" href="habitaciones.html">Habitaciones</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="gastronomia.html">Gastronomía</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="galeria-umbral.html">Umbral Art</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="la-cava.html">La Cava</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="galeria.html">Galería</a>
+</div>
+<button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] focus:outline-none" aria-label="Abrir menú" aria-expanded="false">
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+</button>
+<a class="hidden md:inline-block bg-primary px-6 py-2 text-sm font-medium tracking-wide transition-all duration-300 hover:bg-primary-container whitespace-nowrap" style="color:#ffffff;" href="reservas-y-contacto.html">Reservar Ahora</a>
+</div>
+</nav>
+<div id="mobile-menu" role="navigation" aria-label="Menú móvil">
+<a href="inicio.html" class="">Inicio</a>
+<a href="la-casa.html" class="">La Casa</a>
+<a href="habitaciones.html" class="active-page">Habitaciones</a>
+<a href="gastronomia.html" class="">Gastronomía</a>
+<a href="galeria-umbral.html" class="">Umbral Art</a>
+<a href="la-cava.html" class="">La Cava</a>
+<a href="galeria.html" class="">Galería</a>
+<a href="reservas-y-contacto.html" class="mobile-reserve">Reservar Ahora</a>
+</div>
+<!-- Hero Section -->
+<header class="relative w-full h-[75vh] flex flex-col items-center justify-end text-center pb-24 px-margin-mobile md:px-0">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover brightness-90 rounded-xl" data-alt="A serene and sun-drenched bedroom in a European boutique hotel. Large arched windows reveal a lush green garden. Soft cream pillows and linen on a wooden bed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc2U9C-9ZusGQFwwqUm41Qs4MjAI1-g0VT7oGXWLSSez4-saHW_-TnwPNxvocRxh1JAc6yr6zYFvd8N96bRCKzqXj7Ff89uAs-BghMTCamzywNInr70olM8SHYVWEQ85zmAA4cWcbbPnHpji0cVh00Cv0B0ITeRKdwjtXrDLpC3wTQQVyxsHUCZPw56KEOPiz72u64KqAbYtj8w9RPnjXfrjA1MvTyGETYJNRRZTNrLxN_oSuKeI3986rSALmh3NuPnTGsCWqdYc_SuBg">
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="relative z-10 max-w-4xl px-margin-mobile">
+<span class="font-label-caps text-label-caps text-secondary tracking-[0.4em] block mb-6">ETHEREAL HOSPITALITY</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6">14 Refugios de Arte y Silencio</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant italic max-w-2xl mx-auto">Espacios concebidos especialmente para parejas que desean vivir momentos de tranquilidad, romance y bienestar, donde cada detalle es una obra de arte.</p>
+</div>
+</header>
+<!-- Category Filter -->
+<div class="w-full max-w-container-max mx-auto px-margin-desktop py-12 flex justify-center space-x-12 overflow-x-auto no-scrollbar border-b border-outline-variant/10">
+<button class="font-label-caps text-label-caps pb-2 whitespace-nowrap text-on-surface-variant">Todas las Unidades</button>
+<button class="font-label-caps text-label-caps hover:text-primary transition-colors pb-2 whitespace-nowrap text-primary border-b-2 border-primary">Suites de Autor</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap">Ateliers de Bienestar</button>
+</div>
+<!-- Main Content: Bento-Inspired Room Grid -->
+<main class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Room 1: Garden View Suite (Highlight) -->
+<div class="md:col-span-8 card-container group relative overflow-hidden bg-surface-container-low shadow-sm transition-all duration-500 rounded-xl">
+<div class="aspect-[16/9] overflow-hidden">
+<img class="card-hover-image w-full h-full object-cover" data-alt="Luxurious Garden View Suite at La Locanda." src="https://lh3.googleusercontent.com/d/12ooBJre0RueSGn0XEQ07y8j4lM4AoJPE">
+</div>
+<div class="p-10 flex flex-col md:flex-row justify-between items-start md:items-end">
+<div>
+<div class="flex items-center gap-4 mb-4">
+<span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full font-label-caps text-[10px] tracking-widest uppercase">Identidad Propia</span>
+<h2 class="font-headline-md text-headline-md text-primary">YATEI</h2>
+</div>
+<p class="text-on-surface-variant max-w-md font-body-md">Confort atemporal, amplio espacio con un balcón privado con vistas a las piscinas del patio interior</p>
+<div class="flex gap-6 mt-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">palette</span>
+<span class="font-label-caps text-[10px]">Arte Curado</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+<span class="font-label-caps text-[10px]">Bienestar</span>
+</div>
+</div>
+</div>
+<a href="galeria.html" class="mt-8 md:mt-0 font-label-caps text-label-caps border-b border-primary/40 hover:border-primary transition-all pb-1 text-on-surface-variant inline-block">Ver Galería Íntima</a>
+</div>
+</div>
+<!-- Room 2: Standard Elegance -->
+<div class="md:col-span-4 card-container group bg-surface-container-low shadow-sm flex flex-col rounded-xl">
+<div class="aspect-square overflow-hidden">
+<img class="card-hover-image w-full h-full object-cover" data-alt="Cozy elegant guest room." src="https://lh3.googleusercontent.com/d/1Zl7AqC24p23VQyM7Y63Wsdi6aiM1IR9M">
+</div>
+<div class="p-8 flex-grow">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">DOLCE VITA</h3>
+<p class="text-on-surface-variant font-body-md mb-4 line-clamp-2">Donde el tiempo se queda sin remordimientos </p>
+<div class="flex flex-wrap gap-4 mt-auto">
+<span class="font-label-caps text-[10px] text-on-surface-variant bg-surface-container-highest px-3 py-1">Esencia Artística</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant bg-surface-container-highest px-3 py-1">Hall Privado<br><br></span>
+</div>
+</div>
+</div>
+<!-- Room 3: Signature Hydromassage Suite -->
+<div class="md:col-span-4 card-container group bg-surface-container-low shadow-sm flex flex-col order-2 md:order-none rounded-xl">
+<div class="aspect-square overflow-hidden">
+<img class="card-hover-image w-full h-full object-cover" data-alt="Hydromassage suite." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC02MJS3RdBqNNAF9gZiSJ1XkQX1SjXWCpS0mQLwOC2G4bYuU0-ij8eKNEvR4BLfeSUXLLPYidua73xCI5FsWhd_ugLGrPQgzedVySkiVlTekUEtxHN9B8K0316M81dMtu2dgODphArC4CjS3wlwbDgEzvWAq2uwtHBoIR48efxAu1coysIQLnlr0JjBw7P-uRSzCUQJbjVvqFJIW1lp2RlTGNQ701wFBCBDkNFIthcrX3kuJTo_-rygjGAaEyKkOsz3VZL1DE6_Lj4JUw">
+</div>
+<div class="p-8">
+<div class="flex items-center gap-3 mb-2">
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded-full font-label-caps text-[8px] tracking-widest uppercase">Atelier Ritual</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">AGUA</h3>
+</div>
+<p class="text-on-surface-variant font-body-md mb-4">Grandes vidrieras con vista panoramica al jardin</p>
+<div class="flex flex-wrap gap-4">
+<span class="font-label-caps text-[10px] text-on-surface-variant bg-surface-container-highest px-3 py-1">Spa Privado</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant bg-surface-container-highest px-3 py-1">Diseño Orgánico</span>
+</div>
+</div>
+</div>
+<!-- Room 4: Artistic Asymmetric Card -->
+<div class="md:col-span-8 card-container group relative overflow-hidden bg-surface-container-low shadow-sm transition-all duration-500 order-1 md:order-none rounded-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 h-full">
+<div class="overflow-hidden h-full min-h-[300px]">
+<img class="card-hover-image w-full h-full object-cover" data-alt="Artistic suite interior." src="https://lh3.googleusercontent.com/d/1q36Na2FHW7an7XC_61gT3MMq5piW87bK">
+</div>
+<div class="p-10 flex flex-col justify-center">
+<h3 class="font-headline-md text-headline-md text-primary mb-4">YRUPE&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "</h3>
+<p class="text-on-surface-variant font-body-md mb-8">Arquitecturo original donde prevalen los grandes tirantes de madera . Banera hidromasaje y vista a la piscina del frente</p>
+<div class="space-y-4">
+<div class="flex items-center gap-4 text-on-surface-variant border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span class="font-body-md">Sala de Lectura</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-[20px]">wine_bar</span>
+<span class="font-body-md">Terraza Privada</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Room 5-14: Detailed Grid of Exclusive Units -->
+<div class="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-x-gutter gap-y-16 pt-12">
+<!-- Room 5 -->
+<div class="group border-t border-outline-variant/30 pt-6 cursor-crosshair room-item" data-preview-image="https://lh3.googleusercontent.com/aida-public/AB6AXuBmYEGkBYtp7ZsZCoMjsyCYLnu0qX2F6WHzs7AXrthwrVXE2TLsgxAzXRieUVQvRGhNQKBlqQVvG2THWSPyErCVxJj7l1S1_DCjXAap-hQv75jsTVuGM1kcNG5Wx2s4fbxtiHXH6tK1bNfmjHqzsACvhaBXjg_VuVmPTSOH5uZJWv8UNjkdXq3SB1UHyhM98fUpxTUN-TfIxOfdjwz99DUBi2j5gPWDMsHtV_NYKI6KpIdKFRAWpl26wn4EWCegx9KtkxUvdN0ZfsSz" data-room="AGUA">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline-sm text-headline-sm text-primary transition-colors group-hover:text-secondary">BIANCA</h4>
+<span class="font-label-caps text-on-surface-variant">05</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-body-md">Una inmersion en la exuberante tranquilidad.</p><div class="">Cuenta con jardin privado y grandes ventanales</div><p></p>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase">ESENCIA: NATURALEZA<br>Jardin privado<br><br></span>
+</div>
+<!-- Room 6 -->
+<div class="group border-t border-outline-variant/30 pt-6 cursor-crosshair room-item" data-preview-image="https://lh3.googleusercontent.com/d/1-rhpDA9isNOzgaAxLn95c0hdbPtQkJAF" data-room="BESUGO">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline-sm text-headline-sm text-primary transition-colors group-hover:text-secondary">BESUGO</h4>
+<span class="font-label-caps text-on-surface-variant">06</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-body-md">Intima, acogedora con amplios ventanales al jardin</p>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase">ESENCIA: aroma</span>
+</div>
+<!-- Room 7 -->
+<div class="group border-t border-outline-variant/30 pt-6 cursor-crosshair room-item" data-preview-image="https://lh3.googleusercontent.com/d/1clBgU5Y9Png78Hvkyy8aTvj5jKkFOnQI" data-room="MACAIA">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline-sm text-headline-sm text-primary transition-colors group-hover:text-secondary">MACAIA</h4>
+<span class="font-label-caps text-on-surface-variant">07</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-body-md">Vista y relax en su amaca</p>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase">ESENCIA: TIERRA</span>
+</div>
+<!-- Room 8 -->
+<div class="group border-t border-outline-variant/30 pt-6 cursor-crosshair room-item" data-preview-image="https://lh3.googleusercontent.com/d/1BXpaaha_LSxCZYxCb0XEdTTnZ8mg4LCQ" data-room="LE ARANCE">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline-sm text-headline-sm text-primary transition-colors group-hover:text-secondary">LE ARANCE</h4>
+<span class="font-label-caps text-on-surface-variant">08</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-body-md">Rincón de la calma y la tranquilidad</p>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase">ESENCIA: HISTORIA</span>
+</div>
+<!-- Room 9 -->
+<div class="group border-t border-outline-variant/30 pt-6 cursor-crosshair room-item" data-preview-image="https://lh3.googleusercontent.com/d/11i9Yl_-pTZrPW4V_JjGmEaqm-G5VhJif" data-room="NAIFE">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline-sm text-headline-sm text-primary transition-colors group-hover:text-secondary">NAIFE</h4>
+<span class="font-label-caps text-on-surface-variant">09</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-body-md">Como una corriente artística , murales y paredes en curva </p>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase">ESENCIA: FLUIDEZ</span>
+</div>
+<!-- Room 10 -->
+<div class="group border-t border-outline-variant/30 pt-6 cursor-crosshair room-item" data-preview-image="https://lh3.googleusercontent.com/d/1fInW4FXOrsaEsyXHxYVAJ9x9XepxLf8U" data-room="COCCOLA">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline-sm text-headline-sm text-primary transition-colors group-hover:text-secondary">COCCOLA</h4>
+<span class="font-label-caps text-on-surface-variant">10</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-body-md">Envolvente como un mimo</p>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase">ESENCIA: CLARIDAD</span>
+</div>
+<!-- Room 11 -->
+<div class="group border-t border-outline-variant/30 pt-6 cursor-crosshair room-item" data-preview-image="https://lh3.googleusercontent.com/d/13BIGr0zUbMKLg7a0JOrY6tFeqdNMtWDn" data-room="PETRA">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline-sm text-headline-sm text-primary transition-colors group-hover:text-secondary">PETRA</h4>
+<span class="font-label-caps text-on-surface-variant">11</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-body-md">Delicadeza en un espacio para reconectar</p>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase">ESENCIA: AROMA</span>
+</div>
+<!-- Room 12 -->
+<div class="group border-t border-outline-variant/30 pt-6 cursor-crosshair room-item" data-preview-image="https://lh3.googleusercontent.com/aida-public/AB6AXuAZmMOlGCzky1fz2AloS4RoPvkjigtHKIC8bgZOg93uskCzdnw8VnUxJrFBTdp8XbUH4X-DaX6QRB-NygpJA0qqb3yzMwM5bZMujLMmYbxnNH7u9GPJBAn5XHgNuIpZPmoj1rs46kY6t0bxq7Ugx669ndCzdQ_A1iMniZqqaZ2t_EjFZlFZAMhkpRlwlhoQGZ4llVvV8mlTQ2wdD_BLBHlZB0jiIgZBx2W4VWzW8H6wE9kDN7r8EsJoCOqWzSKvIc1hWYpvlo8rtr9O" data-room="ALUA">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline-sm text-headline-sm text-primary transition-colors group-hover:text-secondary">ALUA</h4>
+<span class="font-label-caps text-on-surface-variant">12</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-body-md">Evoca suavidad fluides y serenidad</p>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase">ESENCIA: COLOR</span>
+</div>
+<!-- Room 13 -->
+<div class="group border-t border-outline-variant/30 pt-6 cursor-crosshair room-item" data-preview-image="https://lh3.googleusercontent.com/d/13HHL-4WhW9KrHZmnwNcKzETo6bx64_bG" data-room="BAMBU">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline-sm text-headline-sm text-primary transition-colors group-hover:text-secondary">BAMBU</h4>
+<span class="font-label-caps text-on-surface-variant">13</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-body-md">Donde el descanse se vive con absoluta tranquilidad</p>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase">ESENCIA: MISTERIO</span>
+</div>
+<!-- Room 14 -->
+<div class="group border-t border-outline-variant/30 pt-6 cursor-crosshair room-item" data-preview-image="https://lh3.googleusercontent.com/d/1sGgab7y7yzvrNQeDokU2tWbQqRw5MIvM" data-room="CAMILA">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline-sm text-headline-sm text-primary transition-colors group-hover:text-secondary">CAMILA</h4>
+<span class="font-label-caps text-on-surface-variant">14</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-body-md">Ampia delicada y armoniosa</p>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase">ESENCIA: GUSTO</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Mid-page Atmospheric Callout -->
+<section class="w-full bg-surface-container py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-section-gap items-center">
+<div>
+<img class="w-full aspect-[4/5] object-cover shadow-xl rounded-xl" data-alt="Macro shot of linen sheets and wooden tray." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdcL0Qt94b9SwnsP6ydiAiYXJsHnXWnjBXZCvDCFZtG7JXaF7zS1WjtSJhc3h8zndmQC_uFCrptnbJIFXOuz-JTtWX6cy-N5fKbEFB_xr8nEXJdqmmq0QtA_78XvTqvV8i8-mnnJK2B8LOsr1jQ6K9I7oe8AqmridWwDLYaV7ZgDSV0eC54foi3QwoWXcf94jM8aIF3J8RNS4DHVV6V3NRRkNLEnHdMLbAA1yNiWg8ivxvwRvXnUtJoVSJ0j54IuOvCdyhM0vl9AQXuKs">
+</div>
+<div class="space-y-8">
+<span class="font-label-caps text-label-caps text-secondary tracking-[0.2em] uppercase">Hospitalidad Etérea</span>
+<h2 class="font-display-lg text-headline-md md:text-display-lg text-primary leading-tight">Belleza, Creatividad y Espíritu del Lugar.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">En el Art &amp; Taste Retreat, nuestras 14 unidades son más que habitaciones; son cápsulas de serenidad. Cada una posee una identidad propia, concebida para que las parejas se reencuentren en un entorno de armonía y autenticidad.</p>
+<div class="pt-6">
+<a href="reservas-y-contacto.html" class="bg-primary text-on-primary px-10 py-4 font-label-caps text-label-caps tracking-widest hover:opacity-90 transition-opacity rounded-sm inline-block">Iniciar Experiencia</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-section-gap px-margin-desktop bg-surface-container-low max-w-container-max mx-auto border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="flex flex-col items-start">
+<a href="inicio.html" class="block mb-8"><img alt="La Locanda - Art &amp; Taste Retreat" class="h-28 w-auto" src="assets/logo-footer.png"></a>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs italic mb-4">
+                "Un retiro de arte y sabor en el corazón del jardín, donde cada estancia es una obra maestra de bienestar."
+            </p>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-auto">© 2026 CARRA STUDIO. Puerto Iguazú.</p>
+</div>
+<div class="flex flex-col space-y-4">
+<span class="font-label-caps text-label-caps text-primary tracking-widest mb-4">EL RETIRO</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="la-casa.html">La Casa</a>
+<a class="font-body-md text-body-md text-primary font-medium" href="habitaciones.html">Habitaciones</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="gastronomia.html">Gastronomía</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="galeria.html">Galería</a>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-primary tracking-widest mb-8">CONECTAR</span>
+<div class="flex space-x-6 mb-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="https://www.instagram.com/lalocandahotel" target="_blank" rel="noopener" aria-label="Instagram">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="https://www.facebook.com/lalocandahotel" target="_blank" rel="noopener" aria-label="Facebook">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.994 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+</a>
+</div>
+
+</div>
+</div>
+</footer>
+<script>
+    // Simple scroll effect for navbar
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.classList.add('shadow-sm');
+        } else {
+            nav.classList.remove('shadow-sm');
+        }
+    });
+
+    // Interaction for filters
+    const filterButtons = document.querySelectorAll('button.font-label-caps');
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => {
+                b.classList.remove('text-primary', 'border-b-2', 'border-primary');
+                b.classList.add('text-on-surface-variant');
+            });
+            btn.classList.add('text-primary', 'border-b-2', 'border-primary');
+            btn.classList.remove('text-on-surface-variant');
+        });
+    });
+
+    // Hover effect logic for rooms list
+    const preview = document.getElementById('hover-preview');
+    const roomItems = document.querySelectorAll('.room-item');
+
+    roomItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            preview.classList.add('active');
+        });
+
+        item.addEventListener('mouseleave', () => {
+            preview.classList.remove('active');
+        });
+
+        item.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            // Adjust position to prevent preview from going off-screen
+            const offset = 20;
+            let posX = x + offset;
+            let posY = y + offset;
+
+            if (posX + 300 > window.innerWidth) {
+                posX = x - 300 - offset;
+            }
+            if (posY + 200 > window.innerHeight) {
+                posY = y - 200 - offset;
+            }
+
+            preview.style.left = `${posX + 140}px`;
+            preview.style.top = `${posY + 90}px`;
+        });
+    });
+</script>
+<script>
+    (function() {
+        const previewImg = document.querySelector('#hover-preview img');
+        const roomItems = document.querySelectorAll('.room-item');
+        
+        roomItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const newSrc = item.getAttribute('data-preview-image');
+                if (newSrc) {
+                    previewImg.src = newSrc;
+                }
+            });
+        });
+    })();
+</script>
+
+
+
+
+
+
+
+<script>
+// Mobile hamburger menu
+(function() {
+    var btn = document.getElementById('mobile-menu-btn');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function() {
+        var isOpen = menu.classList.contains('open');
+        if (isOpen) {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        } else {
+            menu.classList.add('open');
+            btn.classList.add('hamburger-open');
+            btn.setAttribute('aria-expanded', 'true');
+        }
+    });
+    // Close on link click
+    menu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        });
+    });
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+})();
+</script>
+</body></html>

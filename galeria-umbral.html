@@ -1,0 +1,443 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Galería Umbral - La Locanda</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=DM+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#1a1d07",
+                      "on-tertiary-container": "#929677",
+                      "on-error": "#ffffff",
+                      "surface-bright": "#faf9f5",
+                      "on-background": "#1b1c1a",
+                      "primary-container": "#1b3022",
+                      "surface-container-high": "#e9e8e4",
+                      "on-tertiary-fixed-variant": "#45492f",
+                      "on-tertiary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#7a532a",
+                      "primary-fixed": "#d0e9d4",
+                      "background": "#faf9f5",
+                      "inverse-on-surface": "#f2f1ed",
+                      "surface-dim": "#dbdad6",
+                      "secondary-container": "#ffca98",
+                      "secondary": "#7d562d",
+                      "on-surface": "#1b1c1a",
+                      "on-secondary-fixed": "#2c1600",
+                      "tertiary": "#161905",
+                      "surface-container-low": "#f4f4f0",
+                      "tertiary-fixed-dim": "#c5c9a7",
+                      "surface-tint": "#4d6453",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-container": "#819986",
+                      "tertiary-fixed": "#e1e6c2",
+                      "outline": "#737973",
+                      "surface-variant": "#e3e2df",
+                      "on-primary-fixed": "#0b2013",
+                      "surface-container": "#efeeea",
+                      "primary-fixed-dim": "#b4cdb8",
+                      "tertiary-container": "#2a2e16",
+                      "on-primary-fixed-variant": "#364c3c",
+                      "surface-container-highest": "#e3e2df",
+                      "on-secondary": "#ffffff",
+                      "primary": "#061b0e",
+                      "outline-variant": "#c3c8c1",
+                      "inverse-surface": "#2f312e",
+                      "inverse-primary": "#b4cdb8",
+                      "secondary-fixed-dim": "#f0bd8b",
+                      "on-secondary-fixed-variant": "#623f18",
+                      "surface": "#faf9f5",
+                      "secondary-fixed": "#ffdcbd",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#434843",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "margin-desktop": "64px",
+                      "section-gap": "128px",
+                      "gutter": "24px",
+                      "margin-mobile": "20px",
+                      "container-max": "1200px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Playfair Display"],
+                      "display-lg-mobile": ["Playfair Display"],
+                      "headline-sm": ["Playfair Display"],
+                      "display-lg": ["Playfair Display"],
+                      "body-md": ["DM Sans"],
+                      "label-caps": ["DM Sans"],
+                      "body-lg": ["DM Sans"]
+              },
+              "fontSize": {
+                      "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                      "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                      "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background: rgba(250, 249, 245, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .stagger-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.21, 0.6, 0.35, 1);
+        }
+        .stagger-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    
+#mobile-menu {
+    display: none;
+    position: fixed;
+    top: 57px;
+    left: 0;
+    width: 100%;
+    background: rgba(250, 249, 245, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 49;
+    border-top: 1px solid rgba(195,200,193,0.2);
+    padding: 1.5rem 2rem 2rem;
+    box-shadow: 0 8px 24px rgba(6,27,14,0.06);
+}
+#mobile-menu.open {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+#mobile-menu a {
+    display: block;
+    padding: 14px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #434843;
+    border-bottom: 0.5px solid rgba(195,200,193,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+#mobile-menu a:hover { color: #061b0e; }
+#mobile-menu a.active-page { color: #061b0e; }
+#mobile-menu .mobile-reserve {
+    display: block;
+    margin-top: 1.5rem;
+    background: #061b0e;
+    color: #ffffff !important;
+    padding: 14px 24px;
+    text-align: center;
+    border-bottom: none;
+    border-radius: 0;
+}
+#mobile-menu .mobile-reserve:hover { background: #1b3022; }
+.hamburger-open .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger-open .hamburger-line:nth-child(2) { opacity: 0; }
+.hamburger-open .hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+</style>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="La Locanda — Art &amp; Taste Retreat">
+<meta property="og:title" content="Umbral Art Gallery | La Locanda">
+<meta property="og:description" content="Umbral Art: galería de arte contemporáneo en el corazón de La Locanda. Un diálogo entre los sentidos, artistas locales e internacionales, Puerto Iguazú.">
+<meta property="og:image" content="https://lh3.googleusercontent.com/aida-public/AB6AXuAAHZiVAOud7Wr_vZGjvyI_3X6nX1JaDkApdwRC7Hf3EbZ_uI_YrJ2strpQFxSEhicLKXYrHOyOCglLAe3U0d5OT_edqIU5AUq9eJRdeRn_kLFj_JI5KJcD2Zcj75G4NpZWxktXsx6CRp5QfwFJ4A-aINgHh_gSBNePYSJ5r5N_PK5_jPmn48R8x6b_-OhfEkL9fQWUk1JF0jD6Ufa-hnQc_k8jrLg2UvTOOkeo8eaJPir7FfTuQjXF5zFR6SOJXcN7TtchJ0XPd1kIbXo">
+<meta property="og:url" content="https://lalocandahotel.com/galeria-umbral.html">
+<meta name="description" content="Umbral Art: galería de arte contemporáneo en el corazón de La Locanda. Un diálogo entre los sentidos, artistas locales e internacionales, Puerto Iguazú.">
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm shadow-primary/5">
+<div class="flex justify-between items-center px-8 md:px-16 py-4 max-w-[1200px] mx-auto">
+<a href="inicio.html" class="flex flex-col leading-tight">
+<span class="font-display text-2xl tracking-tighter text-primary">La Locanda</span>
+<span class="font-body text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 -mt-1">Art &amp; Taste Retreat</span>
+</a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="inicio.html">Inicio</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="la-casa.html">La Casa</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="habitaciones.html">Habitaciones</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="gastronomia.html">Gastronomía</a>
+<a class="font-body text-sm uppercase tracking-widest text-primary border-b border-primary/30 pb-1 transition-colors duration-300" href="galeria-umbral.html">Umbral Art</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="la-cava.html">La Cava</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="galeria.html">Galería</a>
+</div>
+<button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] focus:outline-none" aria-label="Abrir menú" aria-expanded="false">
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+</button>
+<a class="hidden md:inline-block bg-primary px-6 py-2 text-sm font-medium tracking-wide transition-all duration-300 hover:bg-primary-container whitespace-nowrap" style="color:#ffffff;" href="reservas-y-contacto.html">Reservar Ahora</a>
+</div>
+</nav>
+<div id="mobile-menu" role="navigation" aria-label="Menú móvil">
+<a href="inicio.html" class="">Inicio</a>
+<a href="la-casa.html" class="">La Casa</a>
+<a href="habitaciones.html" class="">Habitaciones</a>
+<a href="gastronomia.html" class="">Gastronomía</a>
+<a href="galeria-umbral.html" class="active-page">Umbral Art</a>
+<a href="la-cava.html" class="">La Cava</a>
+<a href="galeria.html" class="">Galería</a>
+<a href="reservas-y-contacto.html" class="mobile-reserve">Reservar Ahora</a>
+</div>
+<!-- Hero Section -->
+<header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+<div class="absolute inset-0 z-0 rounded-3xl">
+<img class="w-full h-full object-cover rounded-3xl" data-alt="A wide-angle interior view of a contemporary art gallery with floor-to-ceiling windows overlooking a lush, sun-drenched tropical forest in Iguazú. The space is minimalist with polished stone floors reflecting the soft daylight. Large-scale abstract canvases and organic sculptures are thoughtfully placed, creating a serene, quiet luxury atmosphere. The lighting is ethereal and soft, highlighting the interplay between the sophisticated interior design and the vibrant green natural surroundings." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAHZiVAOud7Wr_vZGjvyI_3X6nX1JaDkApdwRC7Hf3EbZ_uI_YrJ2strpQFxSEhicLKXYrHOyOCglLAe3U0d5OT_edqIU5AUq9eJRdeRn_kLFj_JI5KJcD2Zcj75G4NpZWxktXsx6CRp5QfwFJ4A-aINgHh_gSBNePYSJ5r5N_PK5_jPmn48R8x6b_-OhfEkL9fQWUk1JF0jD6Ufa-hnQc_k8jrLg2UvTOOkeo8eaJPir7FfTuQjXF5zFR6SOJXcN7TtchJ0XPd1kIbXo" style="transform: translateY(0px) scale(1);">
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-surface"></div>
+</div>
+<div class="relative z-10 text-center max-w-[800px] px-margin-mobile stagger-reveal active" id="hero-text" style="transition-delay: 0s;">
+<span class="font-label-caps text-label-caps text-on-primary tracking-[0.3em] uppercase mb-6 block">Umbral Art Gallery</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-8">Umbral Art: Un diálogo entre los sentidos</h1>
+<div class="w-12 h-[1px] bg-white mx-auto mb-8"></div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="material-symbols-outlined text-white text-3xl">expand_more</span>
+</div>
+</header>
+<!-- Narrative Section -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<div class="lg:col-span-6 stagger-reveal active" style="transition-delay: 0.1s;">
+<h2 class="font-headline-md text-headline-md text-primary mb-8 italic">Donde la materia encuentra el espíritu.</h2>
+<div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+<p class="">
+                    Ubicada en el corazón de La Locanda, la Galería Umbral es más que un espacio de exhibición; es un santuario donde el arte contemporáneo y la exuberancia de Iguazú se funden en un solo aliento.
+                </p>
+<p class="">
+                    Nuestra colección curada presenta un diálogo fluido entre maestros locales y voces internacionales, seleccionados por su capacidad de evocar la esencia táctil y efímera de la naturaleza. Cada pieza ha sido elegida para resonar con la arquitectura orgánica que nos rodea.
+                </p>
+</div>
+</div>
+<div class="lg:col-span-5 lg:col-start-8 stagger-reveal active" style="transition-delay: 0.2s;">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden group rounded-3xl">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close-up detail of a textured clay sculpture resting on a minimalist dark bronze pedestal. The sculpture features organic, swirling patterns that mimic the flow of water. Soft, side-lighting from a nearby window creates deep shadows and emphasizes the tactile surface. The background is a soft-focus view of tropical garden leaves, blending warm earthen tones with deep forest greens in a quiet luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnnPnVlhSb89hTdcPyS6MrGeezMJR3XYd3DwoMghk0ejB-xHcoyZWcVeRWqHwAsvjjQ7nnotDxkRy4gmJBCHSEreNAjD1St9Ko9uFFQTXTwiGU-4tbNjSAZYhIDHWSuCpBYgrp8dHXpVI66l3ErubeuavpmmNHd2f7Eecgqq_J7RmbMIcpn2DEYl6NhLO9SRWAKiVkQaO04k0RPbLVumKkqIS7sxQC0AAX9h__NpR7dfH8ecTYHaZ8DDsyU9HbeqCOWbqm4CHKZs1OC20">
+</div>
+</div>
+</section>
+<!-- Bento Gallery Grid -->
+<section class="py-section-gap bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="mb-16 text-center">
+<span class="font-label-caps text-label-caps text-secondary tracking-widest uppercase">Colección Curada</span>
+<h2 class="font-headline-md text-headline-md text-primary mt-4">La Exposición Actual</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-gutter h-auto md:h-[900px]">
+<!-- Main Feature -->
+<div class="md:col-span-8 md:row-span-2 relative group overflow-hidden stagger-reveal active rounded-3xl" style="transition-delay: 0.3s;">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A large, ethereal abstract painting in shades of forest green, dark bronze, and soft cream hanging on a textured linen-finish wall. To the side, a large glass door opens to a private tropical terrace. The composition is asymmetrical and modern, highlighting the high-end interior design and the seamless integration of art and nature at La Locanda." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvwyXB9eokjEa_u-n9hIf4MFvD26ACZkcMxJwQhrLqHHCX_Kkg3sjzNspZYdZSyuKYrrOF40zqblvYd4krg27pDdDb6gJOjDXd6oEt4sofOwpWs7pEP73WFNHu-17z-lohONlCRH11u-2ZSOT--s6HdwNXkwbFa51rAR_PDoG5XRthY-jClMlaShdo7uO9DIQ0-_Y9AX57iqVGk2hg7eMI6MEMg6rOInKOx0YRqBy9dPrSMkwREUHLQV68vcIgE0ujRTeU-kDq8fQ4eaU">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-12">
+<span class="text-white font-label-caps text-label-caps tracking-widest uppercase mb-2">Instalación Principal</span>
+<h3 class="text-white font-headline-sm text-headline-sm">Resonancia Verde</h3>
+</div>
+</div>
+<!-- Secondary 1 -->
+<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden stagger-reveal active rounded-3xl" style="transition-delay: 0.4s;">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An elegant bronze sculpture with an elongated, minimalist form stands in a sun-drenched corner of the gallery. The light creates a shimmering effect on the metal surface. In the background, soft cream-colored curtains sway slightly in the breeze. The scene is tranquil and sophisticated, embodying a minimalist-tactile aesthetic with warm-modern digital surfaces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmQRKVdhaY9m6Yp5ErZ1q12LDuH_lodOEmhOUYB7wK4i1PWLTCLI3VuNbq2cByQ4bBRM2W1N10Y9cOlZRLk2p80RpAh5twqMjm6i7qUDZD0JDxqJgalJbRNgbCiJSWnK2qorDeKQZMhc5PdOm7Oq36jBu0QJi7F3mY6sGXdDPeXPZDDmvu_EofMR-4BGu1lFsKcyBe45h1Vpi9kzlO6sq_jOSk9yZHRGYJFCZ17g37Sib8s-fAJUd8FrH5TxGq0iN_xeb4Fd6xQ5u_8t8">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl">visibility</span>
+</div>
+</div>
+<!-- Secondary 2 -->
+<div class="md:col-span-4 md:row-span-1 relative group overflow-hidden stagger-reveal active rounded-3xl" style="transition-delay: 0.5s;">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An artistic view of the gallery's outdoor sculpture garden. Several stone sculptures are nestled among tropical ferns and exotic flowers of the Iguazú region. The late afternoon sun filters through the canopy, creating a dappled light effect. The atmosphere is serene and integrated with nature, showcasing the ethereal hospitality of the retreat." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg_BvPQCazNdK2346gVQYq11P4juWmWp0J_1rwufdAcLSudYjkvolfW154iZtIS8d6pg0aLhsXClPy9iRg0xCCyw4tyrbUb_PNyKoEH08gs-idki80QvacscBBSuyxR1j-SKMlKPAJBUfCxUEeMs9mVVJ7SQUEsKoBBzEvnIe2AwH6RujAS1xekgS28frlyPISuWwxwrE5wks4bL6UR7S3BQv87NKFFaF09mbEXvtn6jtkZZDuo-S-YIjPd-wQB0--0qlNSeqo96oeyQE">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl">visibility</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Art that Breathes -->
+<section class="py-section-gap px-margin-desktop overflow-hidden">
+<div class="max-w-container-max mx-auto flex flex-col lg:flex-row items-center gap-24">
+<div class="w-full lg:w-1/2 stagger-reveal active" style="transition-delay: 0.6s;">
+<div class="relative">
+<div class="absolute -top-12 -left-12 w-64 h-64 bg-secondary/5 rounded-full -z-10 blur-3xl"></div>
+<span class="font-label-caps text-label-caps text-secondary tracking-widest uppercase mb-4 block">Filosofía</span>
+<h2 class="font-display-lg text-display-lg-mobile md:text-headline-md text-primary mb-8 italic">Arte que respira.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-loose mb-10">
+                        Nuestra visión es eliminar las barreras entre el observador y la obra. En Umbral, las piezas no están confinadas; respiran con el viento de la selva, cambian con la luz del atardecer y se transforman con la humedad del ambiente. Es una experiencia viva que invita a la contemplación silenciosa.
+                    </p>
+<div class="grid grid-cols-2 gap-gutter border-t border-outline-variant/30 pt-10">
+<div>
+<span class="font-headline-sm text-headline-sm text-primary block mb-2">Rotativos</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Artistas Invitados</span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm text-primary block mb-2">350m²</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Espacio Sensorial</span>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-1/2 flex justify-center stagger-reveal active" style="transition-delay: 0.7s;">
+<div class="relative max-w-md w-full">
+<div class="aspect-[3/4] bg-surface-container overflow-hidden shadow-2xl shadow-primary/10 rounded-3xl">
+<img class="w-full h-full object-cover" data-alt="A curated collection of pottery and ceramic vases displayed on minimalist dark wood shelving. The vases have earthy, muted tones and organic shapes. The lighting is soft and warm, highlighting the textures of the clay. A single branch with delicate leaves rests in one of the vases, symbolizing the connection between curated design and nature. The overall mood is one of quiet, curated luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUy5n6G8TSYvppFFcauH3B2Su79GVeRYE5fhCswYLT7ywokEpUB0wgvWdLzAc-HY-gaGyWfc-y6Fj54htpv342C4k3KtVaaYJ8XofnlgPc6ig6l7GIU2qIHY0Ot-6CWcum_9NBLbQ-M7mKx-mgxVadZprWFjAMn4oWH6CC8ASCpaHvo4Bh4_rbu-lLRJDt32B0qA5JXLYfUVQcTjIl38VmJDGbilRKhgC3OJmnuz_dA6kFbN6aPcr_K752mmeJ_khuaUkbt_gOr5Q6fa0">
+</div>
+<div class="absolute -bottom-10 -right-10 w-48 h-48 bg-white p-2 shadow-xl hidden md:block rounded-3xl">
+<img class="w-full h-full object-cover rounded-3xl" data-alt="Detail of a minimalist gallery floor showing the transition between smooth stone and a strip of dark wood, with the shadow of a tropical palm leaf falling across the surface. This abstract image emphasizes the subtle tonal layering and ambient shadows characteristic of the design system's focus on texture and natural materials." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD17zVOGFUUMPL6sXkHNksm2q-jHNbZf7zGuvIUlblzdZPXFjCefRSdf_Rh9I8GCTt0bJi44PGyNg0TmdetMc0goAVeXqQ1_njGLjkscykW2gvgWwLaDg_36EN4YTuktMciaBaaQOPmZ83-n6sbDtJJR-lFwzmZfPhQLIrxa-ycgUKh4hT5J7XtbIyg3VJtrL0A9pdVybBqJPciqUdFe9ICrimFLNN0gQXpLCrZ-OEtg1Jsafaehs8pB1AEOjXb5NU5xKB8hQI0yVSq3DA">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Call to Action -->
+<section class="py-section-gap bg-primary text-on-primary text-center">
+<div class="max-w-[800px] mx-auto px-margin-mobile stagger-reveal active" style="transition-delay: 0.8s;">
+<h2 class="font-headline-md text-headline-md mb-6 italic">Inicie un viaje sensorial.</h2>
+<p class="font-body-lg text-body-lg text-on-primary-container mb-12 opacity-90">
+                La Galería Umbral está abierta diariamente&nbsp;<br>&nbsp;Consultoría para coleccionistas.
+            </p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button onclick="document.getElementById('modal-eventos').style.display='flex'" class="border border-white/30 text-white px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-white/10 transition-colors duration-300">
+                    EVENTOS</button>
+</div>
+
+<!-- Modal Eventos / Inscripción -->
+<div id="modal-eventos" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(6,27,14,0.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#faf9f5;max-width:520px;width:90%;max-height:85vh;overflow-y:auto;border-top:3px solid #061b0e;padding:40px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;">
+      <div>
+        <span style="font-family:DM Sans,sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#7d562d;">Galería Umbral</span>
+        <h3 style="font-family:'Playfair Display',serif;font-size:28px;color:#061b0e;margin-top:8px;font-style:italic;">Próximos Eventos</h3>
+      </div>
+      <button onclick="document.getElementById('modal-eventos').style.display='none'" style="background:none;border:none;cursor:pointer;font-size:24px;color:#434843;padding:4px 8px;">&times;</button>
+    </div>
+    <p style="font-family:DM Sans,sans-serif;font-size:16px;color:#434843;line-height:1.7;margin-bottom:20px;">
+      Umbral organiza encuentros, aperturas y conversatorios con artistas a lo largo del año. Los artistas invitados son rotativos y se anuncian en cada visita, así que cada experiencia es única.
+    </p>
+    <p style="font-family:DM Sans,sans-serif;font-size:16px;color:#434843;line-height:1.7;margin-bottom:28px;">
+      Déjenos sus datos y le avisaremos sobre el próximo evento programado.
+    </p>
+    <form action="https://formsubmit.co/contacto@lalocandahotel.com" method="POST" style="display:flex;flex-direction:column;gap:14px;">
+      <input type="text" name="nombre" placeholder="Su nombre" required style="padding:14px;border:1px solid #dbdad6;background:#fff;font-family:DM Sans,sans-serif;font-size:15px;color:#061b0e;">
+      <input type="email" name="email" placeholder="Su correo electrónico" required style="padding:14px;border:1px solid #dbdad6;background:#fff;font-family:DM Sans,sans-serif;font-size:15px;color:#061b0e;">
+      <input type="hidden" name="_subject" value="Solicitud de información — Eventos Umbral Art">
+      <button type="submit" style="background:#061b0e;color:#fff;padding:14px 32px;font-family:DM Sans,sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer;margin-top:6px;">QUIERO ENTERARME</button>
+    </form>
+  </div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full mt-section-gap bg-surface-container-low border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="space-y-6">
+<a href="inicio.html" class="block">
+<img src="assets/logo-footer.png" alt="La Locanda - Art &amp; Taste Retreat" class="h-32 w-auto">
+</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary uppercase mb-2">Explorar</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="privacidad.html">Privacidad</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="terminos.html">Términos</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="reservas-y-contacto.html">Contacto</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary uppercase mb-2">Contacto</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Iguazú, Misiones, Argentina</p>
+<p class="font-body-md text-body-md text-on-surface-variant">contacto@lalocandahotel.com</p>
+<div class="flex gap-4 mt-2">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:text-secondary transition-colors">public</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:text-secondary transition-colors">chat</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:text-secondary transition-colors">mail</span>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-outline-variant/10 max-w-container-max mx-auto text-center font-body-md text-body-md text-on-surface-variant/60">
+            © 2026 CARRA STUDIO - Puerto Iguazú - Misiones - Argentina</div>
+</footer>
+<script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stagger-reveal').forEach((el, index) => {
+            el.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(el);
+        });
+
+        // Simple parallax for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.querySelector('header img');
+            if (heroImage) {
+                heroImage.style.transform = `translateY(${scrolled * 0.4}px) scale(${1 + scrolled * 0.0005})`;
+            }
+        });
+    </script>
+<script>
+// Mobile hamburger menu
+(function() {
+    var btn = document.getElementById('mobile-menu-btn');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function() {
+        var isOpen = menu.classList.contains('open');
+        if (isOpen) {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        } else {
+            menu.classList.add('open');
+            btn.classList.add('hamburger-open');
+            btn.setAttribute('aria-expanded', 'true');
+        }
+    });
+    // Close on link click
+    menu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        });
+    });
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+})();
+</script>
+</body></html>

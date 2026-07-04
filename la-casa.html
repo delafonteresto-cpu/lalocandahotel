@@ -1,0 +1,445 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<title>La Casa | La Locanda</title>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#929677",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#0b2013",
+                    "background": "#faf9f5",
+                    "surface": "#faf9f5",
+                    "surface-container-high": "#e9e8e4",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#d0e9d4",
+                    "surface-container-highest": "#e3e2df",
+                    "secondary-fixed": "#ffdcbd",
+                    "on-tertiary-fixed-variant": "#45492f",
+                    "on-surface-variant": "#434843",
+                    "on-primary-container": "#819986",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary-container": "#7a532a",
+                    "on-tertiary-fixed": "#1a1d07",
+                    "on-secondary-fixed-variant": "#623f18",
+                    "surface-container-low": "#f4f4f0",
+                    "tertiary": "#161905",
+                    "secondary-fixed-dim": "#f0bd8b",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary": "#061b0e",
+                    "inverse-primary": "#b4cdb8",
+                    "surface-tint": "#4d6453",
+                    "surface-dim": "#dbdad6",
+                    "outline": "#737973",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#e1e6c2",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2f312e",
+                    "surface-variant": "#e3e2df",
+                    "surface-container": "#efeeea",
+                    "tertiary-fixed-dim": "#c5c9a7",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#1b1c1a",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#c3c8c1",
+                    "secondary-container": "#ffca98",
+                    "secondary": "#7d562d",
+                    "on-secondary-fixed": "#2c1600",
+                    "on-surface": "#1b1c1a",
+                    "primary-container": "#1b3022",
+                    "primary-fixed-dim": "#b4cdb8",
+                    "surface-bright": "#faf9f5",
+                    "tertiary-container": "#2a2e16",
+                    "on-primary-fixed-variant": "#364c3c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "section-gap": "128px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "container-max": "1200px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-sm": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "body-lg": ["DM Sans"],
+                    "body-md": ["DM Sans"],
+                    "label-caps": ["DM Sans"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .text-balance {
+            text-wrap: balance;
+        }
+        ::selection {
+            background-color: #d0e9d4;
+            color: #061b0e;
+        }
+    
+#mobile-menu {
+    display: none;
+    position: fixed;
+    top: 57px;
+    left: 0;
+    width: 100%;
+    background: rgba(250, 249, 245, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 49;
+    border-top: 1px solid rgba(195,200,193,0.2);
+    padding: 1.5rem 2rem 2rem;
+    box-shadow: 0 8px 24px rgba(6,27,14,0.06);
+}
+#mobile-menu.open {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+#mobile-menu a {
+    display: block;
+    padding: 14px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #434843;
+    border-bottom: 0.5px solid rgba(195,200,193,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+#mobile-menu a:hover { color: #061b0e; }
+#mobile-menu a.active-page { color: #061b0e; }
+#mobile-menu .mobile-reserve {
+    display: block;
+    margin-top: 1.5rem;
+    background: #061b0e;
+    color: #ffffff !important;
+    padding: 14px 24px;
+    text-align: center;
+    border-bottom: none;
+    border-radius: 0;
+}
+#mobile-menu .mobile-reserve:hover { background: #1b3022; }
+.hamburger-open .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger-open .hamburger-line:nth-child(2) { opacity: 0; }
+.hamburger-open .hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+</style>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="La Locanda — Art &amp; Taste Retreat">
+<meta property="og:title" content="La Casa | La Locanda">
+<meta property="og:description" content="Conocé la historia y filosofía de La Locanda, un legado arquitectónico reimaginado en armonía con la selva misionera.">
+<meta property="og:image" content="https://lh3.googleusercontent.com/aida-public/AB6AXuCh_RXg-lhZZpCeOIDmp9h-FzyfJglJ_4YQJVwYgQLw3sBAt7Q1cGRbTWTDwEf5PCpTmyAbr5M1hdowSeIIaXJ8bbLPTr9X4pWFfOh3D1emEIidGoe_Lx77L7KUnKMKUDzSVRcjj88ThMVrTeqJsuyRHqfMhfSnYt_wCP_BqeaC0msQeyjYuvWj5q-fgra0dSbG_2MHzfT8i_YMOo2K3OIxcrHN754H1RWvPZwBeRpgwZD2cCOUcqyFMZf-DZIM3cQZt9-pssAQZrfC2vA">
+<meta property="og:url" content="https://lalocandahotel.com/la-casa.html">
+<meta name="description" content="Conocé la historia y filosofía de La Locanda, un legado arquitectónico reimaginado en armonía con la selva misionera.">
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm shadow-primary/5">
+<div class="flex justify-between items-center px-8 md:px-16 py-4 max-w-[1200px] mx-auto">
+<a href="inicio.html" class="flex flex-col leading-tight">
+<span class="font-display text-2xl tracking-tighter text-primary">La Locanda</span>
+<span class="font-body text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 -mt-1">Art &amp; Taste Retreat</span>
+</a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="inicio.html">Inicio</a>
+<a class="font-body text-sm uppercase tracking-widest text-primary border-b border-primary/30 pb-1 transition-colors duration-300" href="la-casa.html">La Casa</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="habitaciones.html">Habitaciones</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="gastronomia.html">Gastronomía</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="galeria-umbral.html">Umbral Art</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="la-cava.html">La Cava</a>
+<a class="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300" href="galeria.html">Galería</a>
+</div>
+<button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] focus:outline-none" aria-label="Abrir menú" aria-expanded="false">
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+<span class="hamburger-line block w-6 h-[1.5px] bg-primary transition-all duration-300"></span>
+</button>
+<a class="hidden md:inline-block bg-primary px-6 py-2 text-sm font-medium tracking-wide transition-all duration-300 hover:bg-primary-container whitespace-nowrap" style="color:#ffffff;" href="reservas-y-contacto.html">Reservar Ahora</a>
+</div>
+</nav>
+<div id="mobile-menu" role="navigation" aria-label="Menú móvil">
+<a href="inicio.html" class="">Inicio</a>
+<a href="la-casa.html" class="active-page">La Casa</a>
+<a href="habitaciones.html" class="">Habitaciones</a>
+<a href="gastronomia.html" class="">Gastronomía</a>
+<a href="galeria-umbral.html" class="">Umbral Art</a>
+<a href="la-cava.html" class="">La Cava</a>
+<a href="galeria.html" class="">Galería</a>
+<a href="reservas-y-contacto.html" class="mobile-reserve">Reservar Ahora</a>
+</div>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[90vh] flex items-center justify-center overflow-hidden transition-all duration-1000 ease-out opacity-100 translate-y-0">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="A cinematic, low-angle shot of a beautiful European-style stone villa in Puerto Iguazú during the golden hour. The building is surrounded by lush, vibrant subtropical greenery and palm trees, blending old-world architecture with the Argentine rainforest." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh_RXg-lhZZpCeOIDmp9h-FzyfJglJ_4YQJVwYgQLw3sBAt7Q1cGRbTWTDwEf5PCpTmyAbr5M1hdowSeIIaXJ8bbLPTr9X4pWFfOh3D1emEIidGoe_Lx77L7KUnKMKUDzSVRcjj88ThMVrTeqJsuyRHqfMhfSnYt_wCP_BqeaC0msQeyjYuvWj5q-fgra0dSbG_2MHzfT8i_YMOo2K3OIxcrHN754H1RWvPZwBeRpgwZD2cCOUcqyFMZf-DZIM3cQZt9-pssAQZrfC2vA">
+<div class="absolute inset-0 bg-primary/20"></div>
+</div>
+<div class="relative z-10 text-center px-margin-mobile">
+
+
+<div class="w-16 h-[1px] bg-white/40 mx-auto"></div>
+</div>
+</section>
+<!-- Intro Content -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto transition-all duration-1000 ease-out opacity-100 translate-y-0">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-6 space-y-8">
+<span class="font-label-caps text-label-caps text-secondary tracking-widest uppercase">La Renovación</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Un Legado Reimaginado</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">&nbsp; &nbsp; &nbsp;Más que un hotel, somos un espacio donde la naturaleza, el arte, el bienestar y el sabor conviven en armonía. Un lugar para celebrar, descansar, inspirarse y crear recuerdos inolvidables. <br>&nbsp; &nbsp; &nbsp;"La Locanda combina la preservación del patrimonio arquitectónico con una visión sostenible. A través de la recuperación de materiales originales, la valorización de los recursos existentes y el respeto por el entorno natural de Misiones, crea un espacio donde historia, identidad y sostenibilidad conviven en equilibrio
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Ubicada en 1º de Mayo 615, cerca de las Cataratas del Iguazú, La Locanda es un espacio comprometido con la sostenibilidad, la preservación&nbsp; y el respeto por el entorno natural de Misiones. Cada decisión de restauración y funcionamiento busca reducir el impacto ambiental y valorar la identidad local, ofreciendo una experiencia auténtica y responsable.
+                    </p>
+</div>
+<div class="md:col-span-5 md:col-start-8">
+<div class="relative group">
+<img class="rounded-sm shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]" data-alt="Detailed close-up of a vintage brass key hanging against a textured, light-cream lime-washed wall." src="assets/llave-2.jpg">
+<div class="absolute -bottom-10 -left-10 hidden lg:block w-48 h-48 bg-primary-container p-8">
+<p class="font-display-lg text-headline-sm text-primary-fixed-dim italic">2008</p>
+<p class="font-label-caps text-label-caps text-on-primary-fixed mt-2">Cimientos Originales</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Philosophy Section -->
+<section class="py-section-gap bg-surface-container-low overflow-hidden transition-all duration-1000 ease-out opacity-100 translate-y-0">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-16">
+<h2 class="font-headline-md text-headline-md mb-4">Tranquilidad Auténtica</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mx-auto">Nuestra filosofía es simple: proporcionar un santuario donde el paso del tiempo se mide solo por el movimiento de la luz a través del jardín.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-6 h-auto md:h-[800px]">
+<!-- Large Feature: The Garden -->
+<div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-sm">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A lush, secret garden courtyard at La Locanda." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDg2uM1mgwwbwG-P_Wsyp5yAB6zyLnq3k4K7AlNyN8MeVqKTaZO95ezjgS_CGld3eZ_hWcCY2M5jqImEz98zTOxZ4_7y6omzvFG8dDMfzEauqEtPZQo2XtzM9Yk-5mYwDr5Nu7koYjAa02rmCO5_z89ivgV-pFp93Umj7eReBNFbGzrJcncsVLT_aBuypv1-L2Z-ra1IeeIZpJwzr12jIe-rEcAoHf9BNngCGCR8zSCINKTqu1oAuIzJbO7ysyM-zlPmqZGkst9z1Uj9Q">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-12">
+<span class="font-label-caps text-label-caps text-primary-fixed-dim uppercase tracking-widest mb-4 block"><br></span>
+<h3 class="font-headline-md text-white mb-4">El Jardín</h3>
+<p class="text-white/80 max-w-md font-body-md">Un ecosistema donde la flora autóctona se encuentra con el diseño del lugar. Un lugar para la meditación matutina o una copa de vino tranquila al atardecer.</p>
+</div>
+</div>
+<!-- Small Feature: The Terrace -->
+<div class="relative group overflow-hidden rounded-sm bg-surface-container">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80" data-alt="An elegant rooftop terrace at dusk." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZlDdLKu5i5unHhKKRtkN__w3aAGJ0rz6xsDp-VEVJ5MoUY45GwvADV4pB1sGfVDYNModRbCQWutBMHKoWPhLsNg0_R20_h1guPF8Jk1AG1f2AirauTIiQKZ5M6rBWMNyaF-XmzPE1PeHpY4QeZbwdwMIiec6-2c4b6jpYMK-g67sb6eiUiPCdjXOCrCjjgQsVJCPK6j2nvV-gzkxM6GwXJW045RUHAc5EgV-Y8DjHfMrANEam4nYIlx4YrW0YjW2aY2XxioHOyXK5eg4">
+<div class="absolute inset-0 flex flex-col justify-end p-8">
+<h3 class="font-headline-sm text-on-surface">El Relax</h3>
+<p class="font-label-caps text-label-caps text-secondary mt-2">Despues de un dia lleno de energia</p>
+</div>
+</div>
+<!-- Small Feature: Interior Detail -->
+<div class="relative group overflow-hidden rounded-sm bg-secondary-container/10 border border-secondary/5">
+<div class="p-8 h-full flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-secondary text-5xl mb-6" style="font-variation-settings: &quot;FILL&quot; 0;">spa</span>
+<h3 class="font-headline-sm text-on-surface mb-2">Intimidad Curada</h3>
+<p class="font-body-md text-on-surface-variant">Solo catorce habitaciones para asegurar que cada estancia sea personalizada y profundamente tranquila.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Location & Contact -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto transition-all duration-1000 ease-out opacity-100 translate-y-0">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-section-gap items-start">
+<div>
+<span class="font-label-caps text-label-caps text-secondary tracking-widest uppercase mb-6 block">Visítenos</span>
+<h2 class="font-headline-md text-headline-md mb-8">En el corazón de Iguazú</h2>
+<div class="space-y-12">
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">location_on</span>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-2">Dirección</h4>
+<p class="font-body-md text-on-surface-variant">1º de Mayo 615 N3370 Puerto Iguazú<br>Misiones, Argentina</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary">mail</span>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-2">Consultas</h4>
+<p class="font-body-md text-on-surface-variant">contacto@lalocandahotel.com</p>
+<p class="font-body-md text-on-surface-variant">+54 9 3757 213071</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary">share</span>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface mb-2">Redes Sociales</h4>
+<div class="flex gap-4 mt-2">
+<a class="text-on-surface-variant hover:text-primary transition-colors underline underline-offset-4 decoration-secondary/30" href="https://www.instagram.com/lalocanda_hotel/" target="_blank" rel="noopener">Instagram</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors underline underline-offset-4 decoration-secondary/30" href="https://www.facebook.com/p/La-Locanda-Hotel-61573958709257/" target="_blank" rel="noopener">Facebook</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative h-[500px] w-full bg-surface-container-high rounded-sm overflow-hidden shadow-lg">
+<iframe src="https://maps.google.com/maps?q=1%C2%BA%20de%20Mayo%20615%2C%20Puerto%20Igu%C3%A1zu%2C%20Misiones%2C%20Argentina&z=15&output=embed" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación La Locanda"></iframe>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-gutter max-w-container-max mx-auto border-t border-outline-variant/30">
+<div class="space-y-6">
+<a href="inicio.html" class="block">
+<img src="assets/logo-footer.png" alt="La Locanda - Art &amp; Taste Retreat" class="h-32 w-auto">
+</a>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Un santuario boutique donde el legado europeo se encuentra con el espíritu salvaje de la selva de Iguazú.
+            </p>
+</div>
+<div class="flex flex-col space-y-4">
+<span class="font-label-caps text-label-caps text-on-surface mb-2">Explorar</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="la-casa.html">La Casa</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="habitaciones.html">Habitaciones</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="gastronomia.html">Gastronomía</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="galeria.html">Galería</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="galeria-umbral.html">Umbral Art</a>
+</div>
+<div class="space-y-6">
+<span class="font-label-caps text-label-caps text-on-surface mb-2">Boletín Informativo</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Únase a nuestro círculo privado para recibir actualizaciones estacionales y estancias exclusivas.</p>
+<form action="https://formsubmit.co/contacto@lalocandahotel.com" method="POST" class="flex border-b border-outline-variant pb-2 focus-within:border-secondary transition-colors">
+<input type="hidden" name="_subject" value="Solicitud de suscripción al Boletín — La Locanda">
+<input type="hidden" name="_next" value="https://lalocandahotel.com/inicio.html">
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface placeholder:text-on-surface-variant/50" name="email" placeholder="Su dirección de correo electrónico" type="email" required>
+<button class="material-symbols-outlined text-secondary" type="submit">east</button>
+</form>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-60 mt-8">
+                © 2026<span style="letter-spacing: 0.15em;" class="">&nbsp;CARRA STUDIO, Puerto Iguazú.</span></p>
+</div>
+</footer>
+<script>
+        // Subtle scroll reveal animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('transition-all', 'duration-1000', 'ease-out', 'opacity-0', 'translate-y-8');
+                observer.observe(section);
+            });
+
+            // Special handling for the immediate hero section to avoid flash
+            const hero = document.querySelector('section');
+            hero.classList.remove('opacity-0', 'translate-y-8');
+            hero.classList.add('opacity-100', 'translate-y-0');
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Mobile hamburger menu
+(function() {
+    var btn = document.getElementById('mobile-menu-btn');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function() {
+        var isOpen = menu.classList.contains('open');
+        if (isOpen) {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        } else {
+            menu.classList.add('open');
+            btn.classList.add('hamburger-open');
+            btn.setAttribute('aria-expanded', 'true');
+        }
+    });
+    // Close on link click
+    menu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        });
+    });
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove('open');
+            btn.classList.remove('hamburger-open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+})();
+</script>
+</body></html>
