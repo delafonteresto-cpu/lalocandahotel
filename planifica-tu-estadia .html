@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planificá tu Estadía — La Locanda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F2EA;
+    --paper-alt:#EFE7D6;
+    --ink:#211D17;
+    --ink-soft:#514A3E;
+    --brass:#8B6A3F;
+    --brass-dark:#6E5330;
+    --moss:#445241;
+    --line: rgba(33,29,23,0.14);
+    --line-strong: rgba(33,29,23,0.28);
+    --stage-bg:var(--moss);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Instrument Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+
+  .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  .app{
+    display:grid;
+    grid-template-columns: 380px 1fr;
+    min-height:100vh;
+  }
+
+  /* ---------- Left panel ---------- */
+  .stage{
+    position:relative;
+    background:var(--stage-bg);
+    color:var(--paper);
+    padding:56px 44px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    overflow:hidden;
+  }
+  .stage::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(600px 400px at 20% 110%, rgba(139,106,63,0.25), transparent 60%),
+      radial-gradient(500px 350px at 100% -10%, rgba(68,82,65,0.35), transparent 60%);
+    pointer-events:none;
+  }
+  .brandmark{position:relative; z-index:1;}
+  .brandmark .name{
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:22px;
+    letter-spacing:0.02em;
+  }
+  .brandmark .tag{
+    margin-top:4px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:rgba(246,242,234,0.55);
+  }
+
+  .stage-mid{position:relative; z-index:1; margin-top:48px;}
+  .stage-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:rgba(246,242,234,0.5);
+    margin-bottom:14px;
+  }
+  .stage-title{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(30px, 3vw, 40px);
+    line-height:1.15;
+    color:var(--paper);
+    max-width:280px;
+  }
+
+  /* the drawing that completes as the guest advances */
+  .journey{position:relative; z-index:1; margin-top:auto; padding-top:40px;}
+  .journey svg{width:100%; height:auto; display:block;}
+  .journey-path{
+    fill:none;
+    stroke:var(--paper);
+    stroke-width:1.1;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    opacity:0.9;
+    stroke-dasharray: 900;
+    stroke-dashoffset:900;
+    transition: stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1);
+  }
+  .journey-caption{
+    margin-top:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    color:rgba(246,242,234,0.45);
+  }
+
+  .steps-list{position:relative; z-index:1; margin-top:36px; display:flex; flex-direction:column; gap:10px;}
+  .steps-list div{
+    font-family:'Fraunces', serif;
+    font-size:15px;
+    color:rgba(246,242,234,0.38);
+    transition:color .3s ease;
+    padding-left:16px;
+    position:relative;
+  }
+  .steps-list div::before{
+    content:"";
+    position:absolute; left:0; top:9px;
+    width:6px; height:1px;
+    background:rgba(246,242,234,0.3);
+  }
+  .steps-list div.active{color:var(--paper);}
+  .steps-list div.active::before{background:var(--brass); width:10px;}
+  .steps-list div.done{color:rgba(246,242,234,0.65);}
+
+  /* ---------- Right panel ---------- */
+  .panel{
+    padding:64px 72px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .panel-inner{width:100%; max-width:520px;}
+
+  .screen{display:none;}
+  .screen.active{display:block; animation:fade .5s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+
+  /* Intro */
+  .intro-title{
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:clamp(34px, 4vw, 46px);
+    line-height:1.1;
+    margin:18px 0 20px;
+  }
+  .intro-copy{
+    font-size:16px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    max-width:440px;
+    margin-bottom:34px;
+  }
+  .intro-time{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.08em;
+    color:var(--ink-soft);
+    margin-bottom:36px;
+  }
+  .intro-time::before{content:"◐"; color:var(--brass);}
+
+  /* Section heading inside step */
+  .section-eyebrow{margin-bottom:8px;}
+  .section-title{
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:28px;
+    margin:0 0 30px;
+  }
+
+  .field-row{margin-bottom:22px;}
+  .field-row.two{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  label.f-label{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:9px;
+  }
+  input[type=text], input[type=email], input[type=tel], input[type=date], input[type=number], textarea, select{
+    width:100%;
+    border:none;
+    border-bottom:1px solid var(--line-strong);
+    background:transparent;
+    padding:10px 2px;
+    font-family:'Instrument Sans', sans-serif;
+    font-size:16px;
+    color:var(--ink);
+    outline:none;
+    transition:border-color .2s ease;
+  }
+  input:focus, textarea:focus, select:focus{border-color:var(--brass);}
+  textarea{resize:vertical; min-height:90px; line-height:1.6;}
+  select{appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23514A3E'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 4px center;}
+
+  .lang-choice{display:flex; gap:10px;}
+  .lang-choice button{
+    flex:1;
+    padding:11px 8px;
+    border:1px solid var(--line-strong);
+    background:transparent;
+    border-radius:2px;
+    font-family:'Instrument Sans', sans-serif;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .lang-choice button.selected{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+
+  .tag-grid{display:flex; flex-wrap:wrap; gap:10px;}
+  .tag{
+    padding:10px 16px;
+    border:1px solid var(--line-strong);
+    border-radius:20px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    cursor:pointer;
+    user-select:none;
+    transition:all .2s ease;
+    background:transparent;
+  }
+  .tag.selected{background:var(--moss); border-color:var(--moss); color:var(--paper);}
+
+  .radio-row{display:flex; flex-direction:column; gap:10px;}
+  .radio-opt{
+    display:flex; align-items:center; gap:12px;
+    padding:12px 14px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .radio-opt .dot{
+    width:14px; height:14px; border-radius:50%;
+    border:1.4px solid var(--line-strong);
+    position:relative; flex-shrink:0;
+  }
+  .radio-opt.selected{border-color:var(--brass); background:rgba(139,106,63,0.06);}
+  .radio-opt.selected .dot{border-color:var(--brass);}
+  .radio-opt.selected .dot::after{
+    content:""; position:absolute; inset:3px; border-radius:50%; background:var(--brass);
+  }
+  .radio-opt span{font-size:14.5px; color:var(--ink);}
+
+  .actions{display:flex; align-items:center; justify-content:space-between; margin-top:38px;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding:15px 28px;
+    border:none;
+    cursor:pointer;
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:2px;
+    transition:background .2s ease;
+  }
+  .btn:hover{background:var(--brass-dark);}
+  .btn.ghost{
+    background:transparent;
+    color:var(--ink-soft);
+    padding:15px 6px;
+  }
+  .btn.ghost:hover{color:var(--ink); background:transparent;}
+  .btn:disabled{opacity:0.35; cursor:not-allowed; background:var(--ink);}
+
+  .req-note{
+    font-size:11.5px; color:var(--ink-soft); margin-top:10px; font-style:italic;
+    font-family:'Fraunces', serif;
+  }
+
+  /* Final screen */
+  .final-eyebrow{color:var(--brass);}
+  .final-title{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(30px,3.4vw,40px);
+    line-height:1.2;
+    margin:16px 0 22px;
+  }
+  .final-copy{font-size:16px; line-height:1.75; color:var(--ink-soft); max-width:440px;}
+  .final-copy + .final-copy{margin-top:16px;}
+  .final-mark{margin-top:40px; display:flex; align-items:center; gap:14px;}
+  .final-mark .rule{width:40px; height:1px; background:var(--line-strong);}
+  .final-mark span{font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft);}
+
+  @media (max-width: 880px){
+    .app{grid-template-columns:1fr;}
+    .stage{padding:32px 28px; min-height:auto;}
+    .journey{display:none;}
+    .steps-list{flex-direction:row; flex-wrap:wrap; gap:14px; margin-top:20px;}
+    .steps-list div{padding-left:12px;}
+    .panel{padding:40px 24px;}
+    .field-row.two{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- LEFT STAGE -->
+  <div class="stage">
+    <div class="brandmark">
+      <div class="name">La Locanda</div>
+      <div class="tag">Art &amp; Taste Retreat · Puerto Iguazú</div>
+    </div>
+
+    <div class="stage-mid">
+      <div class="stage-eyebrow">Planificá tu estadía</div>
+      <div class="stage-title" id="stageTitle">Cada viaje<br>tiene una historia.</div>
+    </div>
+
+    <div class="steps-list" id="stepsList">
+      <div data-step="1">Sobre vos</div>
+      <div data-step="2">Tu viaje</div>
+      <div data-step="3">Tu experiencia</div>
+      <div data-step="4">Iguazú</div>
+      <div data-step="5">Un detalle más</div>
+    </div>
+
+    <div class="journey">
+      <svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+        <path class="journey-path" id="journeyPath" d="M10,110 C 40,60 60,120 90,80 C 115,48 130,95 155,70 C 180,45 190,90 215,60 C 240,32 255,70 290,20"/>
+      </svg>
+      <div class="journey-caption">tu viaje, tomando forma</div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="panel">
+    <div class="panel-inner">
+
+      <!-- INTRO -->
+      <div class="screen active" data-screen="intro">
+        <div class="label">Bienvenido</div>
+        <div class="intro-title">Planificá tu<br>estadía</div>
+        <p class="intro-copy">Nos gustaría conocer algunos detalles de tu viaje para preparar una propuesta especialmente pensada para vos — antes de responderte.</p>
+        <div class="intro-time">2 minutos, cinco preguntas breves</div>
+        <div class="actions" style="justify-content:flex-start;">
+          <button class="btn" onclick="goTo(1)">Comenzar</button>
+        </div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="screen" data-screen="1">
+        <div class="label section-eyebrow">Sección 1</div>
+        <h2 class="section-title">Sobre vos</h2>
+
+        <div class="field-row">
+          <label class="f-label">Nombre y apellido *</label>
+          <input type="text" id="f_nombre" placeholder="Tu nombre completo">
+        </div>
+        <div class="field-row two">
+          <div>
+            <label class="f-label">País *</label>
+            <input type="text" id="f_pais" placeholder="Ej. Brasil">
+          </div>
+          <div>
+            <label class="f-label">Ciudad</label>
+            <input type="text" id="f_ciudad" placeholder="Opcional">
+          </div>
+        </div>
+        <div class="field-row two">
+          <div>
+            <label class="f-label">Correo electrónico *</label>
+            <input type="email" id="f_email" placeholder="vos@correo.com">
+          </div>
+          <div>
+            <label class="f-label">WhatsApp *</label>
+            <input type="tel" id="f_whats" placeholder="+54 9 ...">
+          </div>
+        </div>
+        <div class="field-row">
+          <label class="f-label">Idioma</label>
+          <div class="lang-choice" id="langChoice">
+            <button type="button" data-lang="Español" class="selected">Español</button>
+            <button type="button" data-lang="Português">Português</button>
+            <button type="button" data-lang="English">English</button>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" onclick="goTo(0)">Atrás</button>
+          <button class="btn" onclick="validateAndGo(1,2)">Continuar</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="screen" data-screen="2">
+        <div class="label section-eyebrow">Sección 2</div>
+        <h2 class="section-title">Tu viaje</h2>
+
+        <div class="field-row two">
+          <div>
+            <label class="f-label">Llegada estimada *</label>
+            <input type="date" id="f_llegada">
+          </div>
+          <div>
+            <label class="f-label">Salida estimada *</label>
+            <input type="date" id="f_salida">
+          </div>
+        </div>
+        <div class="field-row two">
+          <div>
+            <label class="f-label">Adultos *</label>
+            <input type="number" id="f_adultos" min="1" value="2">
+          </div>
+          <div>
+            <label class="f-label">Niños</label>
+            <input type="number" id="f_ninos" min="0" value="0">
+          </div>
+        </div>
+        <div class="field-row">
+          <label class="f-label">Edad de los niños</label>
+          <input type="text" id="f_edadninos" placeholder="Ej. 5 y 8 años (si corresponde)">
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" onclick="goTo(1)">Atrás</button>
+          <button class="btn" onclick="validateAndGo(2,3)">Continuar</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="screen" data-screen="3">
+        <div class="label section-eyebrow">Sección 3</div>
+        <h2 class="section-title">¿Qué estás buscando en este viaje?</h2>
+        <p style="font-size:13px; color:var(--ink-soft); margin:-18px 0 22px;">Elegí todas las que apliquen.</p>
+
+        <div class="tag-grid" id="tagGrid">
+          <div class="tag" data-tag="Descanso">Descanso</div>
+          <div class="tag" data-tag="Naturaleza">Naturaleza</div>
+          <div class="tag" data-tag="Gastronomía">Gastronomía</div>
+          <div class="tag" data-tag="Escapada romántica">Escapada romántica</div>
+          <div class="tag" data-tag="Luna de miel">Luna de miel</div>
+          <div class="tag" data-tag="Celebración especial">Celebración especial</div>
+          <div class="tag" data-tag="Turismo">Turismo</div>
+          <div class="tag" data-tag="Trabajo">Trabajo</div>
+          <div class="tag" data-tag="Otro">Otro</div>
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" onclick="goTo(2)">Atrás</button>
+          <button class="btn" onclick="goTo(4)">Continuar</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="screen" data-screen="4">
+        <div class="label section-eyebrow">Sección 4</div>
+        <h2 class="section-title">Nos gustaría saber...</h2>
+
+        <div class="field-row">
+          <label class="f-label">¿Ya conocés Puerto Iguazú?</label>
+          <div class="radio-row" id="visitaChoice">
+            <div class="radio-opt" data-val="Primera vez"><div class="dot"></div><span>Es mi primera vez</span></div>
+            <div class="radio-opt" data-val="Ya estuve"><div class="dot"></div><span>Ya estuve anteriormente</span></div>
+          </div>
+        </div>
+
+        <div class="field-row" style="margin-top:26px;">
+          <label class="f-label">¿Cómo nos conociste?</label>
+          <select id="f_origen">
+            <option value="">Elegí una opción</option>
+            <option>Instagram</option>
+            <option>Google</option>
+            <option>Booking</option>
+            <option>Agencia de viajes</option>
+            <option>Recomendación</option>
+            <option>Otro</option>
+          </select>
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" onclick="goTo(3)">Atrás</button>
+          <button class="btn" onclick="goTo(5)">Continuar</button>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="screen" data-screen="5">
+        <div class="label section-eyebrow">Sección 5</div>
+        <h2 class="section-title">¿Hay algo que podamos preparar especialmente para vos?</h2>
+        <div class="field-row">
+          <textarea id="f_detalle" placeholder="Una celebración, una alergia, un pedido especial — contanos."></textarea>
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" onclick="goTo(4)">Atrás</button>
+          <button class="btn" onclick="submitForm()">Enviar</button>
+        </div>
+        <div class="req-note">Al enviar, se abrirá WhatsApp con un resumen de tu consulta.</div>
+      </div>
+
+      <!-- FINAL -->
+      <div class="screen" data-screen="final">
+        <div class="label final-eyebrow">Recibido</div>
+        <h2 class="final-title">Este es solo el<br>primer paso.</h2>
+        <p class="final-copy">Hemos recibido la información de tu viaje. Uno de nuestros anfitriones revisará los detalles y se pondrá en contacto con vos para preparar una propuesta pensada especialmente para tu estadía.</p>
+        <p class="final-copy">En La Locanda creemos que cada viaje merece una atención única. Esperamos compartir el resto de esta historia muy pronto.</p>
+        <div class="final-mark"><div class="rule"></div><span>La Locanda · Art &amp; Taste Retreat</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const WHATSAPP_NUMBER = "5493757213071"; // La Locanda
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwhvwDQVFTQZ-Db4kQ8I1iaYIgHZvdchpYOfMAf-YHXIxLhgSAyUUScw9PWRp_plAbu/exec";
+
+  const stageTitles = {
+    0: "Cada viaje<br>tiene una historia.",
+    1: "Contanos quién<br>llega a Iguazú.",
+    2: "Las fechas que<br>tenés en mente.",
+    3: "Lo que buscás<br>en este viaje.",
+    4: "Un poco más<br>sobre vos.",
+    5: "Casi listo.",
+    "final": "Gracias por<br>comenzar el viaje."
+  };
+
+  const pathLengthByStep = {0:0, 1:180, 2:360, 3:540, 4:720, 5:900, final:900};
+
+  let selectedLang = "Español";
+  let selectedTags = [];
+  let selectedVisita = null;
+
+  function setActiveScreen(name){
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelector('.screen[data-screen="'+name+'"]').classList.add('active');
+  }
+
+  function updateStage(step){
+    document.getElementById('stageTitle').innerHTML = stageTitles[step] ?? stageTitles[0];
+    document.querySelectorAll('#stepsList div').forEach(el=>{
+      const s = parseInt(el.dataset.step);
+      el.classList.remove('active','done');
+      if (step === "final" || (typeof step === 'number' && s < step)) el.classList.add('done');
+      if (s === step) el.classList.add('active');
+    });
+    const offset = 900 - (pathLengthByStep[step] ?? 0);
+    document.getElementById('journeyPath').style.strokeDashoffset = offset;
+  }
+
+  function goTo(step){
+    setActiveScreen(step);
+    updateStage(step);
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function validateAndGo(fromStep, toStep){
+    if (fromStep === 1){
+      const nombre = document.getElementById('f_nombre').value.trim();
+      const pais = document.getElementById('f_pais').value.trim();
+      const email = document.getElementById('f_email').value.trim();
+      const whats = document.getElementById('f_whats').value.trim();
+      if(!nombre || !pais || !email || !whats){
+        alert('Por favor completá los campos obligatorios (*) antes de continuar.');
+        return;
+      }
+    }
+    if (fromStep === 2){
+      const llegada = document.getElementById('f_llegada').value;
+      const salida = document.getElementById('f_salida').value;
+      const adultos = document.getElementById('f_adultos').value;
+      if(!llegada || !salida || !adultos){
+        alert('Por favor completá las fechas y la cantidad de adultos.');
+        return;
+      }
+    }
+    goTo(toStep);
+  }
+
+  document.getElementById('langChoice').addEventListener('click', (e)=>{
+    const btn = e.target.closest('button');
+    if(!btn) return;
+    document.querySelectorAll('#langChoice button').forEach(b=>b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedLang = btn.dataset.lang;
+  });
+
+  document.getElementById('tagGrid').addEventListener('click', (e)=>{
+    const tag = e.target.closest('.tag');
+    if(!tag) return;
+    tag.classList.toggle('selected');
+    const val = tag.dataset.tag;
+    if(tag.classList.contains('selected')) selectedTags.push(val);
+    else selectedTags = selectedTags.filter(t=>t!==val);
+  });
+
+  document.getElementById('visitaChoice').addEventListener('click', (e)=>{
+    const opt = e.target.closest('.radio-opt');
+    if(!opt) return;
+    document.querySelectorAll('#visitaChoice .radio-opt').forEach(o=>o.classList.remove('selected'));
+    opt.classList.add('selected');
+    selectedVisita = opt.dataset.val;
+  });
+
+  function submitForm(){
+    const data = {
+      nombre: document.getElementById('f_nombre').value.trim(),
+      pais: document.getElementById('f_pais').value.trim(),
+      ciudad: document.getElementById('f_ciudad').value.trim(),
+      email: document.getElementById('f_email').value.trim(),
+      whats: document.getElementById('f_whats').value.trim(),
+      idioma: selectedLang,
+      llegada: document.getElementById('f_llegada').value,
+      salida: document.getElementById('f_salida').value,
+      adultos: document.getElementById('f_adultos').value,
+      ninos: document.getElementById('f_ninos').value,
+      edadninos: document.getElementById('f_edadninos').value.trim(),
+      experiencia: selectedTags.join(', '),
+      visita: selectedVisita || '',
+      origen: document.getElementById('f_origen').value,
+      detalle: document.getElementById('f_detalle').value.trim()
+    };
+
+    const msg =
+`Hola La Locanda! Quiero planificar mi estadía:
+
+Nombre: ${data.nombre}
+País / Ciudad: ${data.pais}${data.ciudad ? ' / ' + data.ciudad : ''}
+Email: ${data.email}
+Idioma: ${data.idioma}
+
+Llegada: ${data.llegada}
+Salida: ${data.salida}
+Adultos: ${data.adultos} | Niños: ${data.ninos}${data.edadninos ? ' (' + data.edadninos + ')' : ''}
+
+Experiencia buscada: ${data.experiencia || '—'}
+¿Primera vez en Iguazú?: ${data.visita || '—'}
+Cómo nos conoció: ${data.origen || '—'}
+
+Detalle especial: ${data.detalle || '—'}`;
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+
+    // Envía los datos a la Sheet (CONSULTAS) en paralelo. no-cors: no podemos leer
+    // la respuesta, pero el registro se guarda igual del lado del script.
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(data)
+    }).catch(err => console.error('Error guardando en la Sheet:', err));
+
+    goTo('final');
+  }
+</script>
+
+</body>
+</html>
