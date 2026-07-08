@@ -338,8 +338,9 @@
       <div data-step="1">Sobre vos</div>
       <div data-step="2">Tu viaje</div>
       <div data-step="3">Tu experiencia</div>
-      <div data-step="4">Iguazú</div>
-      <div data-step="5">Un detalle más</div>
+      <div data-step="4">Servicios</div>
+      <div data-step="5">Iguazú</div>
+      <div data-step="6">Un detalle más</div>
     </div>
 
     <div class="journey">
@@ -472,6 +473,27 @@
       <!-- STEP 4 -->
       <div class="screen" data-screen="4">
         <div class="label section-eyebrow">Sección 4</div>
+        <h2 class="section-title">Servicios que podrían interesarte</h2>
+        <p style="font-size:13px; color:var(--ink-soft); margin:-18px 0 22px;">Elegí todas las que apliquen — no implica reserva, solo nos ayuda a preparar tu propuesta.</p>
+
+        <div class="tag-grid" id="serviceGrid">
+          <div class="tag" data-service="Restaurante De la Fonte">Restaurante De la Fonte</div>
+          <div class="tag" data-service="Traslados aeropuerto">Traslados aeropuerto</div>
+          <div class="tag" data-service="Excursiones">Excursiones</div>
+          <div class="tag" data-service="Experiencias gastronómicas">Experiencias gastronómicas</div>
+          <div class="tag" data-service="Masajes / bienestar">Masajes / bienestar</div>
+          <div class="tag" data-service="Atenciones especiales en habitación">Atenciones especiales en habitación</div>
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" onclick="goTo(3)">Atrás</button>
+          <button class="btn" onclick="goTo(5)">Continuar</button>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="screen" data-screen="5">
+        <div class="label section-eyebrow">Sección 5</div>
         <h2 class="section-title">Nos gustaría saber...</h2>
 
         <div class="field-row">
@@ -496,21 +518,21 @@
         </div>
 
         <div class="actions">
-          <button class="btn ghost" onclick="goTo(3)">Atrás</button>
-          <button class="btn" onclick="goTo(5)">Continuar</button>
+          <button class="btn ghost" onclick="goTo(4)">Atrás</button>
+          <button class="btn" onclick="goTo(6)">Continuar</button>
         </div>
       </div>
 
-      <!-- STEP 5 -->
-      <div class="screen" data-screen="5">
-        <div class="label section-eyebrow">Sección 5</div>
+      <!-- STEP 6 -->
+      <div class="screen" data-screen="6">
+        <div class="label section-eyebrow">Sección 6</div>
         <h2 class="section-title">¿Hay algo que podamos preparar especialmente para vos?</h2>
         <div class="field-row">
           <textarea id="f_detalle" placeholder="Una celebración, una alergia, un pedido especial — contanos."></textarea>
         </div>
 
         <div class="actions">
-          <button class="btn ghost" onclick="goTo(4)">Atrás</button>
+          <button class="btn ghost" onclick="goTo(5)">Atrás</button>
           <button class="btn" onclick="submitForm()">Enviar</button>
         </div>
         <div class="req-note">Al enviar, se abrirá WhatsApp con un resumen de tu consulta.</div>
@@ -538,15 +560,17 @@
     1: "Contanos quién<br>llega a Iguazú.",
     2: "Las fechas que<br>tenés en mente.",
     3: "Lo que buscás<br>en este viaje.",
-    4: "Un poco más<br>sobre vos.",
-    5: "Casi listo.",
+    4: "Algo más que<br>podamos ofrecerte.",
+    5: "Un poco más<br>sobre vos.",
+    6: "Casi listo.",
     "final": "Gracias por<br>comenzar el viaje."
   };
 
-  const pathLengthByStep = {0:0, 1:180, 2:360, 3:540, 4:720, 5:900, final:900};
+  const pathLengthByStep = {0:0, 1:150, 2:300, 3:450, 4:600, 5:750, 6:900, final:900};
 
   let selectedLang = "Español";
   let selectedTags = [];
+  let selectedServices = [];
   let selectedVisita = null;
 
   function setActiveScreen(name){
@@ -612,6 +636,15 @@
     else selectedTags = selectedTags.filter(t=>t!==val);
   });
 
+  document.getElementById('serviceGrid').addEventListener('click', (e)=>{
+    const tag = e.target.closest('.tag');
+    if(!tag) return;
+    tag.classList.toggle('selected');
+    const val = tag.dataset.service;
+    if(tag.classList.contains('selected')) selectedServices.push(val);
+    else selectedServices = selectedServices.filter(t=>t!==val);
+  });
+
   document.getElementById('visitaChoice').addEventListener('click', (e)=>{
     const opt = e.target.closest('.radio-opt');
     if(!opt) return;
@@ -634,6 +667,7 @@
       ninos: document.getElementById('f_ninos').value,
       edadninos: document.getElementById('f_edadninos').value.trim(),
       experiencia: selectedTags.join(', '),
+      servicios: selectedServices.join(', '),
       visita: selectedVisita || '',
       origen: document.getElementById('f_origen').value,
       detalle: document.getElementById('f_detalle').value.trim()
@@ -652,6 +686,7 @@ Salida: ${data.salida}
 Adultos: ${data.adultos} | Niños: ${data.ninos}${data.edadninos ? ' (' + data.edadninos + ')' : ''}
 
 Experiencia buscada: ${data.experiencia || '—'}
+Servicios de interés: ${data.servicios || '—'}
 ¿Primera vez en Iguazú?: ${data.visita || '—'}
 Cómo nos conoció: ${data.origen || '—'}
 
